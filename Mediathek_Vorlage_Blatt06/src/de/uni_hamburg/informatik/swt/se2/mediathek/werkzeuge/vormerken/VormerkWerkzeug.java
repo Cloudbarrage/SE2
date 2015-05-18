@@ -210,10 +210,12 @@ public class VormerkWerkzeug
     {
         List<Medium> medien = _medienAuflisterWerkzeug.getSelectedMedien();
         Kunde kunde = _kundenAuflisterWerkzeug.getSelectedKunde();
-        // TODO für Aufgabenblatt 6 (nicht löschen): Prüfung muss noch eingebaut
+        // TODO F für Aufgabenblatt 6 (nicht löschen): Prüfung muss noch eingebaut
         // werden. Ist dies korrekt imlpementiert, wird der Vormerk-Button gemäß
         // der Anforderungen a), b), c) und e) aktiviert.
-        boolean vormerkenMoeglich = (kunde != null) && !medien.isEmpty();
+        
+        boolean vormerkenMoeglich = (kunde != null) && !medien.isEmpty() 
+                && _verleihService.istVormerkenMoeglich(medien, kunde);
 
         return vormerkenMoeglich;
     }
@@ -229,7 +231,8 @@ public class VormerkWerkzeug
         List<Medium> selectedMedien = _medienAuflisterWerkzeug
                 .getSelectedMedien();
         Kunde selectedKunde = _kundenAuflisterWerkzeug.getSelectedKunde();
-        // TODO für Aufgabenblatt 6 (nicht löschen): Vormerken einbauen
+        // TODO F für Aufgabenblatt 6 (nicht löschen): Vormerken einbauen
+        _verleihService.merkenMediumVor(selectedMedien, selectedKunde);
 
     }
 

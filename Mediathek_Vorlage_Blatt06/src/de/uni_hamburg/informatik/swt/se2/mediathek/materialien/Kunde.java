@@ -225,4 +225,10 @@ public class Kunde
         }
         return result;
     }
+    
+    public boolean equals(Kunde kunde)
+    {
+        return _kundennummer.equals(kunde.getKundennummer());
+        
+    }
 }

@@ -145,5 +145,40 @@ public class VerleihServiceImplTest
                 Collections.singletonList(_medienListe.get(2)), _datum);
         assertFalse(ereignisse[0]);
     }
-
+    
+    @Test
+    public void testVormerkenDoppelt()
+    {
+        assertTrue(_service.istVormerkenMoeglich(_medienListe, _kunde));
+        _service.merkenMediumVor(_medienListe, _kunde);;
+        assertFalse(_service.istVormerkenMoeglich(_medienListe, _kunde));
+    }
+    
+    @Test
+    public void testVormerkenVerleihen() throws ProtokollierException
+    {
+        assertTrue(_service.istVormerkenMoeglich(_medienListe, _vormerkkunde));
+        _service.merkenMediumVor(_medienListe, _vormerkkunde);
+        
+        assertTrue(_service.istVerleihenMoeglich(_vormerkkunde, _medienListe));
+        _service.verleiheAn(_vormerkkunde, _medienListe, _datum);
+        for(Medium m : _medienListe)
+        {
+            assertTrue(_service.istVerliehenAn(_vormerkkunde, m));
+        }
+    }
+    
+    @Test
+    public void testErsterVormerkerDarfNurAusleihen() throws ProtokollierException
+    {
+        assertTrue(_service.istVormerkenMoeglich(_medienListe, _vormerkkunde));
+        _service.merkenMediumVor(_medienListe, _vormerkkunde);
+        
+        assertFalse(_service.istVerleihenMoeglich(_kunde, _medienListe));
+        _service.verleiheAn(_vormerkkunde, _medienListe, _datum);
+        for(Medium m : _medienListe)
+        {
+            assertFalse(_service.istVerliehenAn(_kunde, m));
+        }
+    }
 }
