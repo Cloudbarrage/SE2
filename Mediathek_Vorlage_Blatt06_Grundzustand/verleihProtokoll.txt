@@ -644,3 +644,16 @@ am 18.5.2015 verliehen an
     Anschrift:
     Kannenweg 23
     21868 Stade
+Mon May 18 19:51:13 CEST 2015: Rückgabe
+CD:
+    Titel: Greatest Hits Vol. 1 & Vol. 2
+    Kommentar: 2 wundervolle Scheiben
+    Interpret: Billy Joel
+    Spiellänge: 140
+am 2.4.2015 verliehen an
+    Kundennummer: 123457
+    Name: Kai Konrad
+    Telefon: unbekannt
+    Anschrift:
+    Kannenweg 23
+    21868 Stade

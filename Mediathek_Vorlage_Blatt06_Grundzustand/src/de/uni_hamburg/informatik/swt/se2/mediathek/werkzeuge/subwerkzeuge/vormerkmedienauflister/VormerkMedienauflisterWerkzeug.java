@@ -28,7 +28,6 @@ import de.uni_hamburg.informatik.swt.se2.mediathek.werkzeuge.ObservableSubWerkze
 public class VormerkMedienauflisterWerkzeug extends ObservableSubWerkzeug {
 	private VormerkMedienauflisterUI _ui;
 	private MedienbestandService _medienbestand;
-	private final VerleihService _verleihService;
 	private final VormerkService _vormerkService;
 
 	/**
@@ -43,14 +42,11 @@ public class VormerkMedienauflisterWerkzeug extends ObservableSubWerkzeug {
 	 * @require medienbestand != null
 	 * @require verleihService != null
 	 */
-	public VormerkMedienauflisterWerkzeug(MedienbestandService medienbestand,
-			VerleihService verleihService, VormerkService vormerkService) {
+	public VormerkMedienauflisterWerkzeug(MedienbestandService medienbestand, VormerkService vormerkService) {
 		assert medienbestand != null : "Vorbedingung verletzt: medienbestand != null";
-		assert verleihService != null : "Vorbedingung verletzt: verleihService != null";
 		assert vormerkService != null : "Vorbedingung verletzt: verleihService != null";
 
 		_medienbestand = medienbestand;
-		_verleihService = verleihService;
 		_vormerkService = vormerkService;
 
 		// UI wird erzeugt.
@@ -143,7 +139,7 @@ public class VormerkMedienauflisterWerkzeug extends ObservableSubWerkzeug {
 			}
 		};
 		_medienbestand.registriereBeobachter(beobachter);
-		_verleihService.registriereBeobachter(beobachter);
+		_vormerkService.registriereBeobachter(beobachter);
 	}
 
 	/**

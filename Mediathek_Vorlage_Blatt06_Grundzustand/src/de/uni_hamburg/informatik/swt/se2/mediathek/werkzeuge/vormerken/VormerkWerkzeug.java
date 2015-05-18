@@ -88,7 +88,7 @@ public class VormerkWerkzeug {
 		// Subwerkzeuge erstellen
 		_kundenAuflisterWerkzeug = new KundenauflisterWerkzeug(kundenstamm);
 		_medienAuflisterWerkzeug = new VormerkMedienauflisterWerkzeug(
-				medienbestand, verleihService, vormerkService);
+				medienbestand, vormerkService);
 		_medienDetailAnzeigerWerkzeug = new MedienDetailAnzeigerWerkzeug();
 		_kundenDetailAnzeigerWerkzeug = new KundenDetailAnzeigerWerkzeug();
 
@@ -137,7 +137,7 @@ public class VormerkWerkzeug {
 	 * Benachrichtigung vom Verleihservice auftaucht.
 	 */
 	private void registriereVormerkButtonAktualisierenAktion() {
-		_verleihService.registriereBeobachter(new ServiceObserver() {
+		_vormerkService.registriereBeobachter(new ServiceObserver() {
 
 			@Override
 			public void reagiereAufAenderung() {
