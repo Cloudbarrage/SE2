@@ -12,6 +12,7 @@ import de.uni_hamburg.informatik.swt.se2.mediathek.materialien.medien.Medium;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.ServiceObserver;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.medienbestand.MedienbestandService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih.VerleihService;
+import de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih.VormerkService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.werkzeuge.ObservableSubWerkzeug;
 
 /**
@@ -28,6 +29,7 @@ public class VormerkMedienauflisterWerkzeug extends ObservableSubWerkzeug {
 	private VormerkMedienauflisterUI _ui;
 	private MedienbestandService _medienbestand;
 	private final VerleihService _verleihService;
+	private final VormerkService _vormerkService;
 
 	/**
 	 * Initialisiert ein neues VormerkMedienauflisterWerkzeug. Es wird die
@@ -42,12 +44,14 @@ public class VormerkMedienauflisterWerkzeug extends ObservableSubWerkzeug {
 	 * @require verleihService != null
 	 */
 	public VormerkMedienauflisterWerkzeug(MedienbestandService medienbestand,
-			VerleihService verleihService) {
+			VerleihService verleihService, VormerkService vormerkService) {
 		assert medienbestand != null : "Vorbedingung verletzt: medienbestand != null";
 		assert verleihService != null : "Vorbedingung verletzt: verleihService != null";
+		assert vormerkService != null : "Vorbedingung verletzt: verleihService != null";
 
 		_medienbestand = medienbestand;
 		_verleihService = verleihService;
+		_vormerkService = vormerkService;
 
 		// UI wird erzeugt.
 		_ui = new VormerkMedienauflisterUI();
@@ -85,22 +89,22 @@ public class VormerkMedienauflisterWerkzeug extends ObservableSubWerkzeug {
 			Kunde vormerker1 = null;
 			Kunde vormerker2 = null;
 			Kunde vormerker3 = null;
-			if (_verleihService.istVorgemerkt(medium)) {
-				switch (_verleihService.getVormerkkarteFuer(medium)
+			if (_vormerkService.istVorgemerkt(medium)) {
+				switch (_vormerkService.getVormerkkarteFuer(medium)
 						.getAnzahlVormerker()) {
 				default:
-					vormerker3 = _verleihService.getVormerkkarteFuer(medium)
+					vormerker3 = _vormerkService.getVormerkkarteFuer(medium)
 							.getVormerker(3);
 				case 3:
-					vormerker2 = _verleihService.getVormerkkarteFuer(medium)
+					vormerker2 = _vormerkService.getVormerkkarteFuer(medium)
 							.getVormerker(2);
 
 				case 2:
-					vormerker1 = _verleihService.getVormerkkarteFuer(medium)
+					vormerker1 = _vormerkService.getVormerkkarteFuer(medium)
 							.getVormerker(1);
 
 				case 1:
-					entleiher = _verleihService.getVormerkkarteFuer(medium)
+					entleiher = _vormerkService.getVormerkkarteFuer(medium)
 							.getVormerker(0);
 
 				}
