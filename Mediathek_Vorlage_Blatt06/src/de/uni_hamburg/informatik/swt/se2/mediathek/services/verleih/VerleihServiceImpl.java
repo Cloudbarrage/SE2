@@ -8,7 +8,6 @@ import java.util.Map;
 import de.uni_hamburg.informatik.swt.se2.mediathek.fachwerte.Datum;
 import de.uni_hamburg.informatik.swt.se2.mediathek.materialien.Kunde;
 import de.uni_hamburg.informatik.swt.se2.mediathek.materialien.Verleihkarte;
-import de.uni_hamburg.informatik.swt.se2.mediathek.materialien.Vormerkkarte;
 import de.uni_hamburg.informatik.swt.se2.mediathek.materialien.medien.Medium;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.AbstractObservableService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.kundenstamm.KundenstammService;
@@ -45,10 +44,6 @@ public class VerleihServiceImpl extends AbstractObservableService implements
      * Der Protokollierer für die Verleihvorgänge.
      */
     private VerleihProtokollierer _protokollierer;
-    
-    
-    
-    private Map<Medium, Vormerkkarte> _vormerkkarten;
 
     /**
      * Konstruktor. Erzeugt einen neuen VerleihServiceImpl.
@@ -68,14 +63,10 @@ public class VerleihServiceImpl extends AbstractObservableService implements
         assert kundenstamm != null : "Vorbedingung verletzt: kundenstamm  != null";
         assert medienbestand != null : "Vorbedingung verletzt: medienbestand  != null";
         assert initialBestand != null : "Vorbedingung verletzt: initialBestand  != null";
-        
         _verleihkarten = erzeugeVerleihkartenBestand(initialBestand);
         _kundenstamm = kundenstamm;
         _medienbestand = medienbestand;
         _protokollierer = new VerleihProtokollierer();
-        
-        _vormerkkarten = erzeugeVerleihkartenHashMap();
-        
     }
 
     /**
@@ -88,18 +79,6 @@ public class VerleihServiceImpl extends AbstractObservableService implements
         for (Verleihkarte verleihkarte : initialBestand)
         {
             result.put(verleihkarte.getMedium(), verleihkarte);
-        }
-        return result;
-    }
-    
-    private HashMap<Medium, Vormerkkarte> erzeugeVerleihkartenHashMap()
-    {
-        HashMap<Medium, Vormerkkarte> result = new HashMap<Medium, Vormerkkarte>();
-        List<Medium> mediumlist = _medienbestand.getMedien();
-        for (Medium medium : mediumlist)
-        {
-            Vormerkkarte karte = new Vormerkkarte();
-            result.put(medium,karte);
         }
         return result;
     }
@@ -123,15 +102,7 @@ public class VerleihServiceImpl extends AbstractObservableService implements
         assert kundeImBestand(kunde) : "Vorbedingung verletzt: kundeImBestand(kunde)";
         assert medienImBestand(medien) : "Vorbedingung verletzt: medienImBestand(medien)";
 
-        boolean istAllevorgemerkt = true;
-        for(Medium medium : medien)
-        {
-            if(getvormerkkarte(medium).istMediumVorgemerkt())
-            {
-                istAllevorgemerkt = getvormerkkarte(medium).istKundeErstVormerker(kunde);
-            }
-        }
-        return sindAlleNichtVerliehen(medien) && istAllevorgemerkt;
+        return sindAlleNichtVerliehen(medien);
     }
 
     @Override
@@ -226,7 +197,6 @@ public class VerleihServiceImpl extends AbstractObservableService implements
             _verleihkarten.put(medium, verleihkarte);
             _protokollierer.protokolliere(
                     VerleihProtokollierer.EREIGNIS_AUSLEIHE, verleihkarte);
-            getvormerkkarte(medium).vormerkersNachVorneVerschiben();
         }
         // XXX Was passiert wenn das Protokollieren mitten in der Schleife
         // schief geht? informiereUeberAenderung in einen finally Block?
@@ -306,57 +276,6 @@ public class VerleihServiceImpl extends AbstractObservableService implements
             }
         }
         return result;
-    }
-    
-
-    @Override
-    public void merkenMediumVor(List<Medium> medien, Kunde kunde)
-    {
-        assert istVormerkenMoeglich(medien, kunde) : "Vorbedingung verletzt: istVormerkenMoeglich(medien, kunde)";
-        
-        for(Medium medium : medien)
-        {
-            getvormerkkarte(medium).fuegenVormerkerEin(kunde);
-        }
-        informiereUeberAenderung();
-    }
-
-    @Override
-    public boolean istVormerkenMoeglich(List<Medium> medien, Kunde kunde)
-    {
-        boolean result = true;
-        for(Medium medium : medien)
-        {
-            if(getvormerkkarte(medium).istMediumVorgemerkt())
-            {
-                Vormerkkarte karte = getvormerkkarte(medium);
-                result = !(karte.istVormerkerInSchlange(kunde) 
-                        || karte.istMediumVollgemerkt());
-            }
-            if(istVerliehen(medium))
-            {
-                Kunde entleiher = getVerleihkarteFuer(medium).getEntleiher();
-                result = !(entleiher.equals(kunde));
-            }
-        }
-        return result; 
-    }
-    
-    public Vormerkkarte getvormerkkarte(Medium medium)
-    {
-        return _vormerkkarten.get(medium);
-    }
-    
-    public Kunde getVormerkerAnStelle(Medium medium,int stelle)
-    {
-        if(getvormerkkarte(medium).istMediumVorgemerkt())
-        {
-            return _vormerkkarten.get(medium).getVormerkerAufStelle(stelle);
-        }
-        else
-        {
-            return null;
-        }
     }
 
 }
