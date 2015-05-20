@@ -36,7 +36,6 @@ public class VormerkWerkzeug {
 	/**
 	 * Der Service zum Ausleihen von Medien.
 	 */
-	private final VerleihService _verleihService;
 	private final VormerkService _vormerkService;
 
 	/**
@@ -82,7 +81,6 @@ public class VormerkWerkzeug {
 		assert verleihService != null : "Vorbedingung verletzt: verleihService != null";
 		assert vormerkService != null : "Vorbedingung verletzt: verleihService != null";
 
-		_verleihService = verleihService;
 		_vormerkService = vormerkService;
 
 		// Subwerkzeuge erstellen
@@ -203,8 +201,7 @@ public class VormerkWerkzeug {
 		// werden. Ist dies korrekt imlpementiert, wird der Vormerk-Button gemäß
 		// der Anforderungen a), b), c) und e) aktiviert.
 		boolean vormerkenMoeglich = (kunde != null) && !medien.isEmpty()
-				&& !_vormerkService.istVorgemerktVon(medien, kunde)
-				&& !_verleihService.mindestensEinerVerliehenAn(kunde, medien);
+				&& _vormerkService.sindVormerkbarVon(medien, kunde);
 
 		return vormerkenMoeglich;
 	}
