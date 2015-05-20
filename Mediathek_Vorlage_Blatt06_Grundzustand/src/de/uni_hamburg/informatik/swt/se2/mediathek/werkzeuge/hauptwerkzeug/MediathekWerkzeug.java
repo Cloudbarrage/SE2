@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.kundenstamm.KundenstammService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.medienbestand.MedienbestandService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih.VerleihService;
-import de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih.VormerkService;
+import de.uni_hamburg.informatik.swt.se2.mediathek.services.vormerken.VormerkService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.werkzeuge.ausleihe.AusleihWerkzeug;
 import de.uni_hamburg.informatik.swt.se2.mediathek.werkzeuge.rueckgabe.RueckgabeWerkzeug;
 import de.uni_hamburg.informatik.swt.se2.mediathek.werkzeuge.vormerken.VormerkWerkzeug;

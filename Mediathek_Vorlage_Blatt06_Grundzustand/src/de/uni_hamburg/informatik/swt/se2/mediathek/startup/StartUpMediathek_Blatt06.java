@@ -12,8 +12,8 @@ import de.uni_hamburg.informatik.swt.se2.mediathek.services.persistenz.DateiLese
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.persistenz.DatenEinleser;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih.VerleihService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih.VerleihServiceImpl;
-import de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih.VormerkService;
-import de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih.VormerkServiceImpl;
+import de.uni_hamburg.informatik.swt.se2.mediathek.services.vormerken.VormerkService;
+import de.uni_hamburg.informatik.swt.se2.mediathek.services.vormerken.VormerkServiceImpl;
 import de.uni_hamburg.informatik.swt.se2.mediathek.werkzeuge.hauptwerkzeug.MediathekWerkzeug;
 
 /**
