@@ -195,10 +195,10 @@ public class VerleihServiceImpl extends AbstractObservableService implements
 					ausleihDatum);
 
 			_verleihkarten.put(medium, verleihkarte);
-			if (_vormerkService.istVorgemerkt(medium)
-					&& _vormerkService.getVormerkkarteFuer(medium)
-							.removeAusleiher()) {
-				_vormerkkarten.remove(medium);
+			if (_vormerkService.istVorgemerkt(medium)) {
+				_vormerkService.getVormerkkarteFuer(medium).removeAusleiher();
+				if(_vormerkService.getVormerkkarteFuer(medium).getAnzahlVormerker() == 0){
+				_vormerkkarten.remove(medium);}
 			}
 			_protokollierer.protokolliere(
 					VerleihProtokollierer.EREIGNIS_AUSLEIHE, verleihkarte);
