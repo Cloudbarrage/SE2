@@ -75,7 +75,8 @@ public class VormerkWerkzeug {
 	 * @require verleihService != null
 	 */
 	public VormerkWerkzeug(MedienbestandService medienbestand,
-			KundenstammService kundenstamm, VerleihService verleihService, VormerkService vormerkService) {
+			KundenstammService kundenstamm, VerleihService verleihService,
+			VormerkService vormerkService) {
 		assert medienbestand != null : "Vorbedingung verletzt: medienbestand != null";
 		assert kundenstamm != null : "Vorbedingung verletzt: kundenstamm != null";
 		assert verleihService != null : "Vorbedingung verletzt: verleihService != null";

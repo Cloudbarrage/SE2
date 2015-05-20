@@ -2353,3 +2353,41 @@ am 20.5.2015 verliehen an
     Anschrift:
     Osterweg 1
     22670 Hamburg
+Wed May 20 23:25:31 CEST 2015: Rückgabe
+CD:
+    Titel: Hard candy
+    Kommentar: besser
+    Interpret: Madonna
+    Spiellänge: 65
+am 30.3.2015 verliehen an
+    Kundennummer: 123456
+    Name: Susi Sonnenschein
+    Telefon: unbekannt
+    Anschrift:
+    Sonnenallee 20
+    22760 Hamburg
+Wed May 20 23:25:52 CEST 2015: Rückgabe
+KonsolenVideospiel:
+    Titel: Dr. Kawashimas Gehirn Jogging
+    Kommentar:  Wie fit ist ihr Gehirn?
+    System: Nintendo DS
+am 2.4.2015 verliehen an
+    Kundennummer: 123457
+    Name: Kai Konrad
+    Telefon: unbekannt
+    Anschrift:
+    Kannenweg 23
+    21868 Stade
+Wed May 20 23:30:06 CEST 2015: Rückgabe
+CD:
+    Titel: Hard candy
+    Kommentar: besser
+    Interpret: Madonna
+    Spiellänge: 65
+am 30.3.2015 verliehen an
+    Kundennummer: 123456
+    Name: Susi Sonnenschein
+    Telefon: unbekannt
+    Anschrift:
+    Sonnenallee 20
+    22760 Hamburg

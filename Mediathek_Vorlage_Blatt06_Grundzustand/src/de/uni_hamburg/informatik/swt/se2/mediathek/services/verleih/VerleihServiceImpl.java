@@ -8,7 +8,6 @@ import java.util.Map;
 import de.uni_hamburg.informatik.swt.se2.mediathek.fachwerte.Datum;
 import de.uni_hamburg.informatik.swt.se2.mediathek.materialien.Kunde;
 import de.uni_hamburg.informatik.swt.se2.mediathek.materialien.Verleihkarte;
-import de.uni_hamburg.informatik.swt.se2.mediathek.materialien.Vormerkkarte;
 import de.uni_hamburg.informatik.swt.se2.mediathek.materialien.medien.Medium;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.AbstractObservableService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.kundenstamm.KundenstammService;
@@ -30,8 +29,6 @@ public class VerleihServiceImpl extends AbstractObservableService implements
 	 * die Angabe des Mediums möglich. Beispiel: _verleihkarten.get(medium)
 	 */
 	private Map<Medium, Verleihkarte> _verleihkarten;
-
-	private Map<Medium, Vormerkkarte> _vormerkkarten;
 
 	/**
 	 * Der Medienbestand.
@@ -71,7 +68,6 @@ public class VerleihServiceImpl extends AbstractObservableService implements
 		assert medienbestand != null : "Vorbedingung verletzt: medienbestand  != null";
 		assert initialBestand != null : "Vorbedingung verletzt: initialBestand  != null";
 		_verleihkarten = erzeugeVerleihkartenBestand(initialBestand);
-		_vormerkkarten = new HashMap<Medium, Vormerkkarte>();
 		_kundenstamm = kundenstamm;
 		_medienbestand = medienbestand;
 		_protokollierer = new VerleihProtokollierer();
@@ -198,7 +194,7 @@ public class VerleihServiceImpl extends AbstractObservableService implements
 			if (_vormerkService.istVorgemerkt(medium)) {
 				_vormerkService.getVormerkkarteFuer(medium).removeAusleiher();
 				if(_vormerkService.getVormerkkarteFuer(medium).getAnzahlVormerker() == 0){
-				_vormerkkarten.remove(medium);}
+				_vormerkService.entferneVormerkkarte(medium);}
 			}
 			_protokollierer.protokolliere(
 					VerleihProtokollierer.EREIGNIS_AUSLEIHE, verleihkarte);
