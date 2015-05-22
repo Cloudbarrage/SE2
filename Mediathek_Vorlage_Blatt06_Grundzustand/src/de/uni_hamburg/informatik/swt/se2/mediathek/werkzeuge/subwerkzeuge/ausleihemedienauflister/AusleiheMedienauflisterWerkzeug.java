@@ -12,6 +12,7 @@ import de.uni_hamburg.informatik.swt.se2.mediathek.materialien.medien.Medium;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.ServiceObserver;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.medienbestand.MedienbestandService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih.VerleihService;
+import de.uni_hamburg.informatik.swt.se2.mediathek.services.vormerken.VormerkService;
 import de.uni_hamburg.informatik.swt.se2.mediathek.werkzeuge.ObservableSubWerkzeug;
 
 /**
@@ -29,6 +30,7 @@ public class AusleiheMedienauflisterWerkzeug extends ObservableSubWerkzeug
     private AusleiheMedienauflisterUI _ui;
     private MedienbestandService _medienbestand;
     private final VerleihService _verleihService;
+    private final VormerkService _vormerkService;
 
     /**
      * Initialisiert ein neues AusleiheMedienauflisterWerkzeug. Es wird die
@@ -41,13 +43,14 @@ public class AusleiheMedienauflisterWerkzeug extends ObservableSubWerkzeug
      * @require verleihService != null
      */
     public AusleiheMedienauflisterWerkzeug(MedienbestandService medienbestand,
-            VerleihService verleihService)
+            VerleihService verleihService, VormerkService vormerkService)
     {
         assert medienbestand != null : "Vorbedingung verletzt: medienbestand != null";
         assert verleihService != null : "Vorbedingung verletzt: verleihService != null";
 
         _medienbestand = medienbestand;
         _verleihService = verleihService;
+        _vormerkService = vormerkService;
 
         // UI wird erzeugt.
         _ui = new AusleiheMedienauflisterUI();
@@ -86,7 +89,11 @@ public class AusleiheMedienauflisterWerkzeug extends ObservableSubWerkzeug
             // der Name des Vormerkers, an den ein Medium ausgeliehen werden
             // darf, gemäß Anforderung d).
             Kunde ersterVormerker = null;
-
+            boolean istVorgemerkt =_vormerkService.istVorgemerkt(medium);
+            if (istVorgemerkt){
+                 ersterVormerker = _vormerkService.getVormerkkarteFuer(medium).getVormerker(0);
+            }
+            
             medienFormatierer.add(new AusleiheMedienFormatierer(medium,
                     istVerliehen, ersterVormerker));
         }
@@ -127,6 +134,7 @@ public class AusleiheMedienauflisterWerkzeug extends ObservableSubWerkzeug
         };
         _medienbestand.registriereBeobachter(beobachter);
         _verleihService.registriereBeobachter(beobachter);
+        _vormerkService.registriereBeobachter(beobachter);
     }
 
     /**
