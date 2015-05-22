@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.mediathek.materialien.Vormerkkarte"/>
-<fullyQualifiedTypeName name="java.util.LinkedList"/>
-<fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih.VormerkServiceImpl"/>
-<fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih.VormerkService"/>
-<fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih.VerleihService"/>
-</qualifiedTypeNameHistroy>

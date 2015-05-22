@@ -1,5 +1,0 @@
-INDEX VERSION 1.127+/Users/Yannik/git/SE2/.metadata/.plugins/org.eclipse.jdt.core
-371251014.index
-4221367475.index
-2021636558.index
-530893132.index
