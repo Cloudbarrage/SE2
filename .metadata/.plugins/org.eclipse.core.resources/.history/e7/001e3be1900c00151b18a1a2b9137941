@@ -1,0 +1,15 @@
+import java.util.Observable;
+import java.util.Observer;
+
+
+public class Beobachter implements Observer{
+	private Beobachtbar test;
+	public Beobachter(){
+		test = new Beobachtbar();
+	}
+	@Override
+	public void update(Observable o, Object arg) {
+		System.out.println(test.getN());
+	}
+
+}

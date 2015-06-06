@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Geld"/>
+<fullyQualifiedTypeName name="java.util.Observable"/>
+<fullyQualifiedTypeName name="java.util.Observer"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.lang.reflect.Method"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+</qualifiedTypeNameHistroy>
