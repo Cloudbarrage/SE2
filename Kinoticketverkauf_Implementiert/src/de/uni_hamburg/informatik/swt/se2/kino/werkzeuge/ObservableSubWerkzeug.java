@@ -17,9 +17,6 @@ import java.util.Set;
  * welchen Fällen sie ihre Beobachter informieren.
  * 
  * Diese Klasse entspricht der Klasse "Beobachtbar" im Beobachter-Muster.
- * 
- * @author SE2-Team
- * @version SoSe 2015
  */
 public abstract class ObservableSubWerkzeug
 {

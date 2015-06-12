@@ -3,9 +3,6 @@ package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge;
 /**
  * Interface für Beobachter, die sich für Änderungen eines ObservableSubWerkzeug
  * interessieren.
- * 
- * @author SE2-Team
- * @version SoSe 2015
  */
 public interface SubWerkzeugObserver
 {
