@@ -1,0 +1,13 @@
+import java.util.Observable;
+
+public class BeobachtbarDrei extends Observable {
+
+	public BeobachtbarDrei() {
+	}
+
+	public void aufruf() {
+		setChanged();
+		notifyObservers();
+	}
+
+}

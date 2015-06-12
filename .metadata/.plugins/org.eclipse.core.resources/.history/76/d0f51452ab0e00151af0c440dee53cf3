@@ -1,0 +1,21 @@
+import java.util.Observable;
+
+public class BeobachtbarZwei extends Observable {
+	private int _n;
+	private int hash = this.hashCode();
+
+	public BeobachtbarZwei() {
+		_n = 0;
+	}
+
+	public int getNumber() {
+		return _n;
+	}
+
+	public void setNumber(int i) {
+		_n = i;
+		setChanged();
+		notifyObservers(hash);
+	}
+	
+}

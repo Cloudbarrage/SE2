@@ -1,0 +1,26 @@
+import java.util.Observable;
+
+public class Beobachtbar extends Observable {
+    private static int UNIQUE_ID = 0;
+    private final int id = ++UNIQUE_ID;
+	private int _n;
+
+	public Beobachtbar() {
+		_n = 0;
+	}
+
+	public int getNumber() {
+		return _n;
+	}
+
+	public void setNumber(int i) {
+		_n = i;
+		setChanged();
+		notifyObservers();
+	}
+
+	public int HashCode(){
+		return id;
+	}
+	
+}

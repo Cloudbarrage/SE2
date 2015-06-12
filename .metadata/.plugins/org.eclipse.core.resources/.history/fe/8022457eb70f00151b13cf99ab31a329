@@ -1,0 +1,53 @@
+package modell;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
+public class BeobachterDrei
+{
+    private abstract class ObserverCounter implements Observer
+    {
+        private int i = 0;
+
+        public void count()
+        {
+            ++i;
+        }
+
+        public int getValue()
+        {
+            return i;
+        }
+    }
+
+    private int _beobachter = 0;
+
+    private int[] _counter = new int[0];
+    private List<ObserverCounter> _observer = new ArrayList<ObserverCounter>();
+
+    public void registriereBeobachter(BeobachtbarDrei beobachtbar)
+    {
+        ++_beobachter;
+        if (_beobachter >= _counter.length)
+        {
+            int[] temp = _counter;
+            _counter = new int[_counter.length * 2 + 1];
+            System.arraycopy(temp, 0, _counter, 0, temp.length);
+        }
+        beobachtbar.addObserver(new ObserverCounter()
+        {
+            public void update(Observable o, Object arg)
+            {
+                count();
+            }
+        });
+    }
+
+    public int getNumber(int i)
+    {
+        return _observer.get(i)
+            .getValue();
+    }
+}

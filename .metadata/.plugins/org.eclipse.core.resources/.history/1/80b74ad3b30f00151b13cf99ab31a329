@@ -1,0 +1,26 @@
+package modell;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
+
+public class BeobachterVier implements Observer
+{
+    private Map<Observable, Integer> _beobachtbar = new HashMap<Observable, Integer>();
+
+    public void registriereBeobachter(Beobachtbar beobachtbar)
+    {
+        beobachtbar.addObserver(this);
+        _beobachtbar.put(beobachtbar, 0);
+
+    }
+
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        _beobachtbar.put(o, _beobachtbar.get(o) + 1);
+    }
+}

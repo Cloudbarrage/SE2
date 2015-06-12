@@ -1,0 +1,33 @@
+package modell;
+
+import java.util.Observable;
+import java.util.Observer;
+
+public class BeobachterDrei
+{
+
+    private int _beobachter = 0;
+
+    private int[] _counter = new int[0];
+    
+    public void registriereBeobachter(BeobachtbarDrei beobachtbar)
+    {
+        beobachtbar.addObserver(new Observer()
+        {
+            private final int id = _beobachter;
+            public void update(Observable o, Object arg)
+            {
+                count(id);
+            }
+        });
+    }
+    
+    private void count(int i) {
+        ++_counter[i];
+    }
+
+    public int getNumber(int i) {
+        return _counter[i];
+    }
+
+}

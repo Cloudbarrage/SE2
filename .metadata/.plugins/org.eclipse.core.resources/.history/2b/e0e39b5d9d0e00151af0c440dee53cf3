@@ -1,0 +1,53 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
+
+public class ZweiterBeobachter implements Observer {
+	private interface command {
+		public void run(Object arg);
+	}
+
+	int _n;
+
+	private Beobachtbar test;
+	private Map<Observable, command> _funktionen;
+
+	public ZweiterBeobachter() {
+		test = new Beobachtbar();
+		test.addObserver(this);
+		_funktionen = new HashMap<Observable, command>();
+
+		command com = new command() {
+			public void run(Object arg) {
+				counter();
+			}
+		};
+
+		_funktionen.put(test, com);
+
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		_funktionen.get(o).run(arg);
+	}
+
+	private void counter() {
+		++_n;
+	}
+
+	public void setNumber(int i) {
+		test.setNumber(i);
+	}
+
+	public void test() {
+		long time = System.nanoTime();
+		for (int i = 0; i != 1000; ++i) {
+			setNumber(test.getNumber() + 1);
+		}
+		System.out.println("Beobachtermodell-Test:");
+		System.out.println("Überschuss Aufrufe:" + (test.getNumber() - _n));
+		System.out.println("Zeit: " + ((System.nanoTime() - time)) + "ns");
+	}
+}

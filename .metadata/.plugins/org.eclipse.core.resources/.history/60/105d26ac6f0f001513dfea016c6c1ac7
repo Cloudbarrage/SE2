@@ -1,0 +1,19 @@
+package gui;
+
+import javax.swing.*;
+
+public class GuiTest
+{
+    public static void main(String[] args)
+    {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(new JPanel()
+        {
+            static final long serialVersionUID = 200;
+
+        });
+        frame.pack();
+        frame.setVisible(true);
+    }
+}

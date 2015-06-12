@@ -1,0 +1,54 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
+
+public class Beobachter implements Observer {
+	private interface command {
+		public void run(Object arg);
+	}
+
+	int _n;
+	int _n1;
+	int _n2;
+
+	private Map<Observable, command> _funktionen;
+
+	public Beobachter() {
+
+		_funktionen = new HashMap<Observable, command>();
+
+	}
+
+	public void registriereBeobachter(Beobachtbar beobachtbar) {
+		beobachtbar.addObserver(this);
+		command com = new command() {
+			public void run(Object arg) {
+				count(arg);
+			}
+		};
+
+		_funktionen.put(beobachtbar, com);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		_funktionen.get(o).run(arg);
+	}
+
+	private void count(Object arg) {
+		
+	}
+
+	public int getNumber() {
+		return _n;
+	}
+
+	public int getNumber1() {
+		return _n1;
+	}
+
+	public int getNumber2() {
+		return _n2;
+	}
+}

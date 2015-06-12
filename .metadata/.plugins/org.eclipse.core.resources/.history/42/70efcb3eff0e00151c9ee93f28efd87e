@@ -1,0 +1,103 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class ModellTest {
+	@Test
+	public void AufrufTestTyp1() {
+		// Erzeuge mehrere Beobachter und Beobachtbare
+		Beobachtbar beobachtbar1 = new Beobachtbar();
+		Beobachtbar beobachtbar2 = new Beobachtbar();
+		Beobachter beobachter1 = new Beobachter();
+		Beobachter beobachter2 = new Beobachter();
+		beobachter1.registriereBeobachter(beobachtbar1);
+		beobachter1.registriereBeobachter(beobachtbar2);
+		beobachter2.registriereBeobachter(beobachtbar1);
+		beobachter2.registriereBeobachter(beobachtbar2);
+
+		// Ändere beide beobachtbar je 10000000 mal
+		for (int i = 0; i != 10000000; ++i) {
+			beobachtbar1.setNumber(beobachtbar1.getNumber() + 1);
+			beobachtbar2.setNumber(beobachtbar2.getNumber() + 1);
+		}
+
+		// Prüfe, ob alle Änderungen angekommen sind
+		assertEquals(beobachtbar1.getNumber(), beobachter1.getNumber(1));
+		assertEquals(beobachtbar1.getNumber(), beobachter2.getNumber(1));
+		assertEquals(beobachtbar2.getNumber(), beobachter1.getNumber(2));
+		assertEquals(beobachtbar2.getNumber(), beobachter2.getNumber(2));
+
+	}
+
+	@Test
+	public void AufrufTestTyp2() {
+		// Erzeuge mehrere Beobachter und Beobachtbare
+		BeobachtbarZwei beobachtbar1 = new BeobachtbarZwei();
+		BeobachtbarZwei beobachtbar2 = new BeobachtbarZwei();
+		BeobachterZwei beobachter1 = new BeobachterZwei();
+		BeobachterZwei beobachter2 = new BeobachterZwei();
+		beobachter1.registriereBeobachter(beobachtbar1);
+		beobachter1.registriereBeobachter(beobachtbar2);
+		beobachter2.registriereBeobachter(beobachtbar1);
+		beobachter2.registriereBeobachter(beobachtbar2);
+
+		// Ändere beide beobachtbar je 10000000 mal
+		for (int i = 0; i != 10000000; ++i) {
+			beobachtbar1.setNumber(beobachtbar1.getNumber() + 1);
+			beobachtbar2.setNumber(beobachtbar2.getNumber() + 1);
+		}
+
+		// Prüfe, ob alle Änderungen angekommen sind
+		assertEquals(beobachtbar1.getNumber(),
+				beobachter1.getNumber(beobachtbar1.getID()));
+		assertEquals(beobachtbar1.getNumber(),
+				beobachter2.getNumber(beobachtbar1.getID()));
+		assertEquals(beobachtbar2.getNumber(),
+				beobachter1.getNumber(beobachtbar2.getID()));
+		assertEquals(beobachtbar2.getNumber(),
+				beobachter2.getNumber(beobachtbar2.getID()));
+
+	}
+
+	@Test
+	public void AufrufTestTyp3() {
+		// Erzeuge mehrere Beobachter und Beobachtbare
+		BeobachtbarDrei beobachtbar1 = new BeobachtbarDrei();
+		BeobachtbarDrei beobachtbar2 = new BeobachtbarDrei();
+		BeobachterDrei beobachter1 = new BeobachterDrei();
+		BeobachterDrei beobachter2 = new BeobachterDrei();
+		beobachter1.registriereBeobachter(beobachtbar1);
+		beobachter1.registriereBeobachter(beobachtbar2);
+		beobachter2.registriereBeobachter(beobachtbar1);
+		beobachter2.registriereBeobachter(beobachtbar2);
+
+		// 10000000 Aufrufe
+		for (int i = 0; i != 10000000; ++i) {
+			beobachtbar1.aufruf();
+			beobachtbar2.aufruf();
+		}
+
+		// Always true
+		assertTrue(true);
+
+	}
+	
+	@Test
+	public void fancyPrint(){
+		String timeString = "test";
+		System.out.print("╔");
+		for (int i = 0; i != timeString.length(); ++i) {
+			System.out.print("═");
+		}
+		System.out.print("╗"+"\n");
+		System.out.print("║"+ timeString + "║" + "\n");
+		System.out.print("╚");
+		for (int i = 0; i != timeString.length(); ++i) {
+			System.out.print("═");
+		}
+		System.out.print("╝");
+
+		
+	}
+
+}

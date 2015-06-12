@@ -1,0 +1,19 @@
+import java.util.Observable;
+
+public class Beobachtbar extends Observable {private int _n;
+
+	public Beobachtbar() {
+		_n = 0;
+	}
+
+	public int getNumber() {
+		return _n;
+	}
+
+	public void increment() {
+		++_n;
+		setChanged();
+		notifyObservers();
+	}
+	
+}

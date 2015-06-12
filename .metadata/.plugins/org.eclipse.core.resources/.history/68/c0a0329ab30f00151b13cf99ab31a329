@@ -1,0 +1,23 @@
+package modell;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
+public class BeobachterVier implements Observer
+{
+    private List<Observable> _beobachtbar = new ArrayList<Observable>();
+
+    public void registriereBeobachter(Beobachtbar beobachtbar)
+    {
+        beobachtbar.addObserver(this);
+        _beobachtbar.add(beobachtbar);
+
+    }
+
+    @Override
+    public void update(Observable o, Object arg)
+    {
+    }
+}

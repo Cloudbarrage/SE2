@@ -1,0 +1,30 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
+
+public class BeobachterZwei implements Observer {
+	private Map<Integer, Integer> _funktionen;
+
+	public BeobachterZwei() {
+		_funktionen = new HashMap<Integer, Integer>();
+
+	}
+
+	public void registriereBeobachter(BeobachtbarZwei beobachtbar) {
+		beobachtbar.addObserver(this);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		count((int) arg);
+	}
+
+	private void count(int i) {
+		_funktionen.put(i, _funktionen.get(i) + 1);
+	}
+
+	public int getNumber(int i) {
+		return _funktionen.get(i);
+	}
+}

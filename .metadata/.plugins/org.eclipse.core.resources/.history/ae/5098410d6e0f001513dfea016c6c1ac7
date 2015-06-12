@@ -1,0 +1,13 @@
+import java.util.Observable;
+import java.util.Observer;
+
+public class BeobachterDrei implements Observer {
+
+	public void registriereBeobachter(BeobachtbarDrei beobachtbar) {
+		beobachtbar.addObserver(this);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+	}
+}
