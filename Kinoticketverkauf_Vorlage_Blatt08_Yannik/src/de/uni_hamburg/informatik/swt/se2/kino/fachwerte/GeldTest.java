@@ -25,17 +25,23 @@ public class GeldTest {
 	@Test
 	public void testeToString() {
 		Geld test = new Geld(0);
-		assertEquals(test.toString(), "0.00 Euro");
+		assertEquals(test.toString(), "0,00 Euro");
 		test = new Geld(9);
-		assertEquals(test.toString(), "0.09 Euro");
+		assertEquals(test.toString(), "0,09 Euro");
 		test = new Geld(10);
-		assertEquals(test.toString(), "0.10 Euro");
+		assertEquals(test.toString(), "0,10 Euro");
 		test = new Geld(99);
-		assertEquals(test.toString(), "0.99 Euro");
+		assertEquals(test.toString(), "0,99 Euro");
 		test = new Geld(100);
-		assertEquals(test.toString(), "1.00 Euro");
+		assertEquals(test.toString(), "1,00 Euro");
 		test = new Geld(12345);
-		assertEquals(test.toString(), "123.45 Euro");
+		assertEquals(test.toString(), "123,45 Euro");
+		test = new Geld(-1);
+        assertEquals(test.toString(), "-0,01 Euro");
+        test = new Geld(-12);
+        assertEquals(test.toString(), "-0,12 Euro");
+        test = new Geld(-123);
+        assertEquals(test.toString(), "-1,23 Euro");
 
 	}
 }

@@ -1,9 +1,0 @@
-
-public class main {
-	public static final Beobachter _beobachter;
-
-	public static void main(String[] args) {
-		_beobachter = new Beobachter();
-	}
-
-}

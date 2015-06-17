@@ -103,5 +103,4 @@ class PlatzVerkaufsWerkzeugUI
     {
         return _hauptPanel;
     }
-
 }

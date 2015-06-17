@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung.bezahlUI&apos; to &apos;BezahlWerkzeugUI&apos;&#x0A;- Original project: &apos;Kinoticketverkauf_Vorlage_Blatt08_Yannik&apos;&#x0A;- Original element: &apos;de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung.bezahlUI&apos;&#x0A;- Renamed element: &apos;de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung.BezahlWerkzeugUI&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;bezahlUI&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung{bezahlUI.java[bezahlUI" matchStrategy="1" name="BezahlWerkzeugUI" qualified="false" references="true" similarDeclarations="false" stamp="1434545270168" textual="false" version="1.0"/>
+</session>

@@ -1,3 +1,0 @@
-interface command {
-	public void run(Object arg);
-}

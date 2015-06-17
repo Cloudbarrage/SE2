@@ -1,0 +1,101 @@
+package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung;
+
+import javax.swing.JFrame;
+import javax.swing.SpringLayout;
+import javax.swing.JButton;
+import javax.swing.JTextPane;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class BezahlWerkzeugUI
+{
+    private JFrame _frame;
+    private JTextField _textField;
+    private JButton _ok;
+    private JButton _abbrechen;
+    private String _zuBezahlenderPreis = "1";
+    private String _rueckzugebenderPreis = "0";
+
+    public BezahlWerkzeugUI()
+    {
+        _frame = new JFrame("Bezahlung");
+        _frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        SpringLayout springLayout = new SpringLayout();
+        _frame.getContentPane()
+            .setLayout(springLayout);
+
+        _abbrechen = new JButton("Abbrechen");
+        springLayout.putConstraint(SpringLayout.SOUTH, _abbrechen, -26,
+                SpringLayout.SOUTH, _frame.getContentPane());
+        springLayout.putConstraint(SpringLayout.EAST, _abbrechen, -26,
+                SpringLayout.EAST, _frame.getContentPane());
+        _frame.getContentPane()
+            .add(_abbrechen);
+
+        _ok = new JButton("OK");
+        _ok.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+            }
+        });
+        springLayout.putConstraint(SpringLayout.NORTH, _ok, 0,
+                SpringLayout.NORTH, _abbrechen);
+        springLayout.putConstraint(SpringLayout.EAST, _ok, -6,
+                SpringLayout.WEST, _abbrechen);
+        _frame.getContentPane()
+            .add(_ok);
+
+        _textField = new JTextField();
+        springLayout.putConstraint(SpringLayout.SOUTH, _textField, -145,
+                SpringLayout.SOUTH, _frame.getContentPane());
+        _frame.getContentPane()
+            .add(_textField);
+        _textField.setColumns(10);
+
+        JTextPane txtpnZubezahlenderpreis = new JTextPane();
+        springLayout.putConstraint(SpringLayout.SOUTH, txtpnZubezahlenderpreis,
+                -31, SpringLayout.NORTH, _textField);
+        springLayout.putConstraint(SpringLayout.EAST, txtpnZubezahlenderpreis,
+                -60, SpringLayout.EAST, _frame.getContentPane());
+        springLayout.putConstraint(SpringLayout.WEST, _textField, 0,
+                SpringLayout.WEST, txtpnZubezahlenderpreis);
+        txtpnZubezahlenderpreis.setText(_zuBezahlenderPreis);
+        _frame.getContentPane()
+            .add(txtpnZubezahlenderpreis);
+
+        JTextPane txtpnRueckzugebenderpreis = new JTextPane();
+        springLayout.putConstraint(SpringLayout.NORTH,
+                txtpnRueckzugebenderpreis, 26, SpringLayout.SOUTH, _textField);
+        springLayout.putConstraint(SpringLayout.WEST, txtpnRueckzugebenderpreis,
+                0, SpringLayout.WEST, _textField);
+        txtpnRueckzugebenderpreis.setText(_rueckzugebenderPreis);
+        _frame.getContentPane()
+            .add(txtpnRueckzugebenderpreis);
+    }
+    
+    public void setRueckzugebenderPreis(String preis){
+        _zuBezahlenderPreis.setText(preis);
+    }
+
+    public JFrame getFrame()
+    {
+        return _frame;
+    }
+
+    public JTextField getTextField()
+    {
+        return _textField;
+    }
+
+    public JButton getOKButton()
+    {
+        return _ok;
+    }
+
+    public JButton getAbbrechenButton()
+    {
+        return _abbrechen;
+    }
+}

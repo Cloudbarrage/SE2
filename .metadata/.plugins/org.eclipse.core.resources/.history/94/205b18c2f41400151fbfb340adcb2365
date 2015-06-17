@@ -1,0 +1,59 @@
+package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Geld;
+
+public class BezahlWerkzeug
+{
+    private BezahlWerkzeugUI _ui;
+    
+    private Geld zuBezahlenderPreis;
+    private Geld rueckzugebenderPreis;
+
+    public BezahlWerkzeug()
+    {
+        _ui = new BezahlWerkzeugUI();
+        registriereUIAktionen();
+    }
+
+    private void registriereUIAktionen()
+    {
+        _ui.getOKButton()
+            .addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+
+                }
+            });
+        _ui.getAbbrechenButton()
+            .addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+
+                }
+            });
+        _ui.getTextField()
+            .addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    berechneRückgabewert();
+                }
+            });
+    }
+    private Geld bezahlterPreis(){
+        return new Geld(Integer.parseInt(_ui.getTextField().getText()));
+    }
+
+    private void berechneRückgabewert(){
+        rueckzugebenderPreis  = zuBezahlenderPreis.substract(bezahlterPreis());
+    }
+
+}
