@@ -33,7 +33,6 @@
 <fullyQualifiedTypeName name="javafx.scene.Scene"/>
 <fullyQualifiedTypeName name="javafx.event.Event"/>
 <fullyQualifiedTypeName name="javafx.scene.control.Button"/>
-<fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Geld"/>
 <fullyQualifiedTypeName name="java.util.Observable"/>
 <fullyQualifiedTypeName name="java.util.Observer"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
@@ -42,4 +41,10 @@
 <fullyQualifiedTypeName name="javax.swing.Icon"/>
 <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
 <fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung.bezahlUI"/>
+<fullyQualifiedTypeName name="java.awt.GridBagLayout"/>
+<fullyQualifiedTypeName name="java.awt.FlowLayout"/>
+<fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Geld"/>
+<fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung.BezahlWerkzeug"/>
+<fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.platzverkauf.PlatzVerkaufsWerkzeug"/>
+<fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.materialien.Vorstellung"/>
 </qualifiedTypeNameHistroy>
