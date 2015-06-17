@@ -6,7 +6,7 @@
 	<item value="190" key="org.eclipse.jdt.debug.ui.jre_preference_page_context.columnWidth0"/>
 	<section name="org.eclipse.jdt.debug.ui.MAIN_METHOD_SELECTION_DIALOG">
 		<item value="true" key="ShowStatusLine"/>
-		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;History&gt;&#x0A;&lt;historyRootNode&gt;&#x0A;&lt;infoNode&gt;=Kinoticketverkauf_Vorlage_Blatt08/src&amp;lt;de.uni_hamburg.informatik.swt.se2.kino.startup{StartupKinoticketverkauf.java[StartupKinoticketverkauf&lt;/infoNode&gt;&#x0A;&lt;infoNode&gt;=Kinoticketverkauf_Vorlage_Blatt08_Yannik/src&amp;lt;de.uni_hamburg.informatik.swt.se2.kino.startup{StartupKinoticketverkauf.java[StartupKinoticketverkauf&lt;/infoNode&gt;&#x0A;&lt;/historyRootNode&gt;&#x0A;&lt;/History&gt;" key="History"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;History&gt;&#x0A;&lt;historyRootNode&gt;&#x0A;&lt;infoNode&gt;=Kinoticketverkauf_Vorlage_Blatt08/src&amp;lt;de.uni_hamburg.informatik.swt.se2.kino.startup{StartupKinoticketverkauf.java[StartupKinoticketverkauf&lt;/infoNode&gt;&#x0A;&lt;infoNode&gt;=Kinoticketverkauf_Vorlage_BezahlUI_Li/src&amp;lt;de.uni_hamburg.informatik.swt.se2.kino.startup{StartupKinoticketverkauf.java[StartupKinoticketverkauf&lt;/infoNode&gt;&#x0A;&lt;infoNode&gt;=Kinoticketverkauf_Vorlage_Blatt08_Yannik/src&amp;lt;de.uni_hamburg.informatik.swt.se2.kino.startup{StartupKinoticketverkauf.java[StartupKinoticketverkauf&lt;/infoNode&gt;&#x0A;&lt;/historyRootNode&gt;&#x0A;&lt;/History&gt;" key="History"/>
 		<section name="DialogBoundsSettings">
 			<item value="600" key="DIALOG_WIDTH"/>
 			<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>

@@ -2,24 +2,21 @@ package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Geld;
-import de.uni_hamburg.informatik.swt.se2.kino.materialien.Vorstellung;
-import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.platzverkauf.PlatzVerkaufsWerkzeug;
 
-public class BezahlWerkzeug
+public class BezahlWerkzeug extends Observable
 {
     private BezahlWerkzeugUI _ui;
 
     private Geld zuBezahlenderPreis;
-    private PlatzVerkaufsWerkzeug _platzVerkaufsWerkzeug;
-    private Vorstellung _vorstellung;
 
-    public BezahlWerkzeug(Geld preis,
-            PlatzVerkaufsWerkzeug platzVerkaufsWerkzeug, Vorstellung vorstellung)
+    public BezahlWerkzeug(Geld preis)
     {
-        _vorstellung = vorstellung;
-        _platzVerkaufsWerkzeug = platzVerkaufsWerkzeug;
         zuBezahlenderPreis = preis;
         _ui = new BezahlWerkzeugUI(zuBezahlenderPreis);
         registriereUIAktionen();
@@ -34,7 +31,7 @@ public class BezahlWerkzeug
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    _platzVerkaufsWerkzeug.verkaufePlaetze(_vorstellung);
+                    bezahlt();
                     _ui.close();
                 }
             });
@@ -48,36 +45,68 @@ public class BezahlWerkzeug
                 }
             });
         _ui.getTextField()
-            .addActionListener(new ActionListener()
+            .getDocument()
+            .addDocumentListener(new DocumentListener()
             {
                 @Override
-                public void actionPerformed(ActionEvent e)
+                public void insertUpdate(DocumentEvent e)
                 {
-                    Geld rueckgabe = berechneRückgabewert();
-                    _ui.setRueckzugebenderPreis(rueckgabe);
-                    if (rueckgabe.signum() != -1)
-                    {
-                        _ui.getOKButton()
-                            .setEnabled(true);
-                    }
-                    else
-                    {
-                        _ui.getOKButton()
-                            .setEnabled(false);
-                    }
+                    textfieldUpdate();
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e)
+                {
+                    textfieldUpdate();
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e)
+                {
+                    textfieldUpdate();
                 }
             });
     }
 
+    private void textfieldUpdate()
+    {
+        if (_ui.getTextField()
+            .getText()
+            .matches("[0-9]*"))
+        {
+            Geld rueckgabe = berechneRückgabewert();
+            _ui.setRueckzugebenderPreis(rueckgabe);
+            if (rueckgabe.signum() != -1)
+            {
+                _ui.getOKButton()
+                    .setEnabled(true);
+            }
+            else
+            {
+                _ui.getOKButton()
+                    .setEnabled(false);
+            }
+        }
+        else{
+            _ui.setRueckzugebenderPreis(new Geld(-1));
+        }
+    }
+
     private Geld bezahlterPreis()
     {
-        return new Geld(Integer.parseInt(_ui.getTextField()
+        return new Geld(Long.parseLong(_ui.getTextField()
             .getText()));
     }
 
     private Geld berechneRückgabewert()
     {
         return bezahlterPreis().substract(zuBezahlenderPreis);
+    }
+
+    private void bezahlt()
+    {
+        setChanged();
+        notifyObservers();
     }
 
 }

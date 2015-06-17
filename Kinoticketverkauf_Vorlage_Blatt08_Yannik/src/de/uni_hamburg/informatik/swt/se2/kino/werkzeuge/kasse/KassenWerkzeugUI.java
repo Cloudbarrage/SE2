@@ -28,7 +28,7 @@ class KassenWerkzeugUI
      * http://tango.freedesktop.org/
      */
 
-    private static final String TITEL = "SE2-Kinokartenverkauf SoSe 2015";
+    private static final String TITEL = "SE2-Kinokartenverkauf SoSe 2015 Yannik";
 
     // Die Widgets, aus denen das UI sich zusammensetzt
     private JFrame _frame;

@@ -19,6 +19,11 @@ public final class Geld
         _eurocent = betrag;
     }
 
+    public Geld(long betrag)
+    {
+        _eurocent = BigDecimal.valueOf(betrag);
+    }
+
     public Geld multiply(int multi)
     {
         return new Geld(_eurocent.multiply(BigDecimal.valueOf(multi)));
@@ -88,12 +93,14 @@ public final class Geld
         }
         return ergebnis;
     }
-    
-    public Geld abs(){
+
+    public Geld abs()
+    {
         return new Geld(_eurocent.abs());
     }
-    
-    public int signum(){
+
+    public int signum()
+    {
         return _eurocent.signum();
     }
 }

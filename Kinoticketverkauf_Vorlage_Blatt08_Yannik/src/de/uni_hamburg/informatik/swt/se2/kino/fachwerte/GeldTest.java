@@ -42,6 +42,9 @@ public class GeldTest {
         assertEquals(test.toString(), "-0,12 Euro");
         test = new Geld(-123);
         assertEquals(test.toString(), "-1,23 Euro");
+        test = new Geld(Integer.MAX_VALUE);
+        test = test.multiply(500);
+        assertEquals(test.toString(), "10737418235,00 Euro");
 
 	}
 }

@@ -1,0 +1,33 @@
+package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung;
+
+import javax.swing.text.PlainDocument;
+
+public class NumericDocument extends PlainDocument
+{
+    @Override
+    public void insertString(int offs, String str,
+            javax.swing.text.AttributeSet a)
+            throws javax.swing.text.BadLocationException
+    {
+        Object filterNewlines = getProperty("filterNewlines");
+        if ((filterNewlines instanceof Boolean) && filterNewlines.equals(Boolean.TRUE)) {
+            if ((str != null) && (str.indexOf('\n') >= 0)) {
+                StringBuilder filtered = new StringBuilder(str);
+                int n = filtered.length();
+                for (int i = 0; i < n; i++) {
+                    if (filtered.charAt(i) == '\n') {
+                        filtered.setCharAt(i, ' ');
+                    }
+                }
+                str = filtered.toString();
+            }
+        }
+        super.insertString(offs, str, a);
+    }
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1970504098661704882L;
+
+}

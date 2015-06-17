@@ -1,23 +1,28 @@
 package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung;
 
 import javax.swing.JFrame;
-import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
 
 import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Geld;
+
 import java.awt.SystemColor;
+import java.awt.BorderLayout;
+
+import javax.swing.Box;
 
 public class BezahlWerkzeugUI
 {
-    //TODO Grafik verbessern
     private JFrame _frame;
     private JTextField _textField;
     private JButton _ok;
     private JButton _abbrechen;
     private JTextPane _zuZahlenderPreis;
     private JTextPane _rueckzugebenderPreis;
+    private Box verticalBox;
+    private Box horizontalBox;
+    private Box verticalBox_1;
 
     public BezahlWerkzeugUI(Geld preis)
     {
@@ -25,57 +30,41 @@ public class BezahlWerkzeugUI
         _frame.setResizable(false);
         _frame.setAlwaysOnTop(true);
         _frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        SpringLayout springLayout = new SpringLayout();
         _frame.getContentPane()
-            .setLayout(springLayout);
+            .setLayout(new BorderLayout(0, 0));
 
-        _abbrechen = new JButton("Abbrechen");
+        verticalBox_1 = Box.createVerticalBox();
         _frame.getContentPane()
-            .add(_abbrechen);
+            .add(verticalBox_1, BorderLayout.NORTH);
 
-        _ok = new JButton("OK");
-        springLayout.putConstraint(SpringLayout.NORTH, _abbrechen, 0,
-                SpringLayout.NORTH, _ok);
-        springLayout.putConstraint(SpringLayout.WEST, _abbrechen, 6,
-                SpringLayout.EAST, _ok);
-        _ok.setEnabled(false);
-        _frame.getContentPane()
-            .add(_ok);
-
-        _textField = new JTextField();
-        springLayout.putConstraint(SpringLayout.WEST, _textField, 20,
-                SpringLayout.WEST, _frame.getContentPane());
-        springLayout.putConstraint(SpringLayout.WEST, _ok, 0,
-                SpringLayout.WEST, _textField);
-        _frame.getContentPane()
-            .add(_textField);
-        _textField.setColumns(25);
+        verticalBox = Box.createVerticalBox();
+        verticalBox_1.add(verticalBox);
 
         _zuZahlenderPreis = new JTextPane();
+        _zuZahlenderPreis.setEditable(false);
+        verticalBox.add(_zuZahlenderPreis);
         _zuZahlenderPreis.setBackground(SystemColor.window);
-        springLayout.putConstraint(SpringLayout.EAST, _textField, -10,
-                SpringLayout.EAST, _zuZahlenderPreis);
-        springLayout.putConstraint(SpringLayout.NORTH, _zuZahlenderPreis, 10,
-                SpringLayout.NORTH, _frame.getContentPane());
-        springLayout.putConstraint(SpringLayout.WEST, _zuZahlenderPreis, 10,
-                SpringLayout.WEST, _frame.getContentPane());
         _zuZahlenderPreis.setText("Zu bezahlen: " + preis);
-        _frame.getContentPane()
-            .add(_zuZahlenderPreis);
+
+        _textField = new JTextField();
+        verticalBox.add(_textField);
+        _textField.setColumns(10);
 
         _rueckzugebenderPreis = new JTextPane();
+        _rueckzugebenderPreis.setEditable(false);
+        verticalBox.add(_rueckzugebenderPreis);
         _rueckzugebenderPreis.setBackground(SystemColor.window);
-        springLayout.putConstraint(SpringLayout.NORTH, _ok, 10,
-                SpringLayout.SOUTH, _rueckzugebenderPreis);
-        springLayout.putConstraint(SpringLayout.NORTH, _rueckzugebenderPreis,
-                66, SpringLayout.NORTH, _frame.getContentPane());
-        springLayout.putConstraint(SpringLayout.SOUTH, _textField, -6,
-                SpringLayout.NORTH, _rueckzugebenderPreis);
-        springLayout.putConstraint(SpringLayout.WEST, _rueckzugebenderPreis, 0,
-                SpringLayout.WEST, _zuZahlenderPreis);
-        _rueckzugebenderPreis.setText("Betrag nicht ausreichen");
-        _frame.getContentPane()
-            .add(_rueckzugebenderPreis);
+        _rueckzugebenderPreis.setText("Betrag nicht ausreichend");
+
+        horizontalBox = Box.createHorizontalBox();
+        verticalBox_1.add(horizontalBox);
+
+        _ok = new JButton("OK");
+        horizontalBox.add(_ok);
+        _ok.setEnabled(false);
+
+        _abbrechen = new JButton("Abbrechen");
+        horizontalBox.add(_abbrechen);
     }
 
     public void setRueckzugebenderPreis(Geld preis)
@@ -86,7 +75,7 @@ public class BezahlWerkzeugUI
         }
         else
         {
-            _rueckzugebenderPreis.setText("Betrag nicht ausreichen");
+            _rueckzugebenderPreis.setText("Betrag nicht ausreichend");
         }
     }
 
@@ -117,8 +106,9 @@ public class BezahlWerkzeugUI
 
     public void zeigeFenster()
     {
-        _frame.setSize(250, 150);
-        _frame.setLocation(450, 300);
+        _frame.setSize(200, 120);
+        _frame.setLocationRelativeTo(null);
         _frame.setVisible(true);
+        _textField.requestFocusInWindow();
     }
 }

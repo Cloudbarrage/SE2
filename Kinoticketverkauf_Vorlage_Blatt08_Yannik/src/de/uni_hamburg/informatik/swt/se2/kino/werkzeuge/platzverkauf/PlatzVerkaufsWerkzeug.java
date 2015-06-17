@@ -3,6 +3,8 @@ package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.platzverkauf;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import javax.swing.JPanel;
@@ -95,10 +97,16 @@ public class PlatzVerkaufsWerkzeug
         Set<Platz> plaetze = _ui.getPlatzplan()
             .getAusgewaehltePlaetze();
 
-        //TODO Disable Platzauswahl while BezahlWerkzeug is open
-
-        new BezahlWerkzeug(_vorstellung.getPreisFuerPlaetze(plaetze), this,
-                _vorstellung);
+        BezahlWerkzeug bezahlWerkzeug = new BezahlWerkzeug(
+                _vorstellung.getPreisFuerPlaetze(plaetze));
+        bezahlWerkzeug.addObserver(new Observer()
+        {
+            @Override
+            public void update(Observable o, Object arg)
+            {
+                verkaufePlaetze(_vorstellung);
+            }
+        });
     }
 
     /**

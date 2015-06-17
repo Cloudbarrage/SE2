@@ -3,17 +3,18 @@
 	<section name="ExternalProjectImportWizard">
 		<item value="true" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
 		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
-		<item value="true" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="/Users/Yannik/git/SE2/Kinoticketverkauf_Vorlage_BezahlUI_Li"/>
 			<item value=""/>
 			<item value="/Users/Yannik/git/untitled folder"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
 			<item value="/Users/Yannik/Downloads/Kinoticketverkauf_Vorlage_Blatt08.zip"/>
 			<item value="/Users/Yannik/Downloads/Mediathek_Vorlage_Blatt06.zip"/>
 			<item value="/Users/Yannik/Downloads/Kinoticketverkauf_Vorlage_Blatt07.zip"/>
 			<item value="/Users/Yannik/Desktop/Kinoticketverkauf_Vorlage_Blatt07_Yannik.zip"/>
-			<item value="/Users/Yannik/Desktop/Untitled.zip"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">

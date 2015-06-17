@@ -33,8 +33,6 @@
 <fullyQualifiedTypeName name="javafx.scene.Scene"/>
 <fullyQualifiedTypeName name="javafx.event.Event"/>
 <fullyQualifiedTypeName name="javafx.scene.control.Button"/>
-<fullyQualifiedTypeName name="java.util.Observable"/>
-<fullyQualifiedTypeName name="java.util.Observer"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="javax.swing.JLabel"/>
@@ -47,4 +45,13 @@
 <fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung.BezahlWerkzeug"/>
 <fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.platzverkauf.PlatzVerkaufsWerkzeug"/>
 <fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.materialien.Vorstellung"/>
+<fullyQualifiedTypeName name="java.util.Observable"/>
+<fullyQualifiedTypeName name="java.util.Observer"/>
+<fullyQualifiedTypeName name="javax.swing.event.DocumentListener"/>
+<fullyQualifiedTypeName name="javax.swing.event.DocumentEvent"/>
+<fullyQualifiedTypeName name="javax.swing.JFormattedTextField"/>
+<fullyQualifiedTypeName name="java.text.NumberFormat"/>
+<fullyQualifiedTypeName name="javax.swing.SpinnerNumberModel"/>
+<fullyQualifiedTypeName name="javax.swing.text.PlainDocument"/>
+<fullyQualifiedTypeName name="javax.swing.text.DocumentFilter"/>
 </qualifiedTypeNameHistroy>
