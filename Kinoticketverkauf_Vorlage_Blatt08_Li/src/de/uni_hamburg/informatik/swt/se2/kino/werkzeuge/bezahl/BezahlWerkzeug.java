@@ -1,4 +1,4 @@
-package de.uni_hamburg.informatik.swt.se2.kino.bezahl;
+package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahl;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,9 +72,7 @@ public class BezahlWerkzeug extends ObservableSubwerkzeug
     
     public void berechnenBezahltGeld(String text)
     {
-        if(!text.isEmpty())
-        {
-            if(text.matches("[0-9]*"))
+            if(text.matches("[0-9]*") && !text.isEmpty())
             {
                 int betragzahl = Integer.parseInt(text);
                 if (betragzahl >= _preis)
@@ -91,11 +89,14 @@ public class BezahlWerkzeug extends ObservableSubwerkzeug
                     _ui.getOKButton().setEnabled(false);
                 }
             }
+            else if(text.isEmpty())
+            {
+                _ui.getRestGeld().setText("-" + _preis);
+            }
             else
             {
                 _ui.getRestGeld().setText("ungiltig wert");
                 _ui.getOKButton().setEnabled(false);
             }
-        }
     }
 }

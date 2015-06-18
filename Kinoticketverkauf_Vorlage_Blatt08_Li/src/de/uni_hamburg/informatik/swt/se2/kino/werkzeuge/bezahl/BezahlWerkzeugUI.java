@@ -1,4 +1,4 @@
-package de.uni_hamburg.informatik.swt.se2.kino.bezahl;
+package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahl;
 
 
 import java.awt.*;
