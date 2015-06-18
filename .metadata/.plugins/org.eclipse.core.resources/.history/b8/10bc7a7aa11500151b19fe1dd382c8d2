@@ -1,0 +1,152 @@
+package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Observable;
+
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
+import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Geld;
+
+public class BezahlWerkzeug extends Observable
+{
+    private enum bezahlZustand
+    {
+        FALSCHE_EINGABE, NICHT_AUSREICHEND, AUSREICHEND
+    }
+
+    private BezahlWerkzeugUI _ui;
+
+    private Geld zuBezahlenderPreis;
+
+    public BezahlWerkzeug(Geld preis)
+    {
+        zuBezahlenderPreis = preis;
+        _ui = new BezahlWerkzeugUI(zuBezahlenderPreis);
+        registriereUIAktionen();
+        _ui.zeigeFenster();
+    }
+
+    private void registriereUIAktionen()
+    {
+        _ui.getOKButton()
+            .addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    bezahlt();
+                    _ui.close();
+                }
+            });
+        _ui.getAbbrechenButton()
+            .addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    _ui.close();
+                }
+            });
+        _ui.getTextField()
+            .addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    if (rueckgabeMoeglich() == bezahlZustand.AUSREICHEND)
+                    {
+                        bezahlt();
+                        _ui.close();
+                    }
+                }
+            });
+        _ui.getTextField()
+            .getDocument()
+            .addDocumentListener(new DocumentListener()
+            {
+                @Override
+                public void insertUpdate(DocumentEvent e)
+                {
+                    textfieldUpdate();
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e)
+                {
+                    textfieldUpdate();
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e)
+                {
+                    textfieldUpdate();
+                }
+            });
+    }
+
+    private void textfieldUpdate()
+    {
+        switch (rueckgabeMoeglich())
+        {
+        case AUSREICHEND:
+            _ui.getOKButton()
+                .setEnabled(true);
+            break;
+        case NICHT_AUSREICHEND:
+            _ui.getOKButton()
+                .setEnabled(false);
+            break;
+        case FALSCHE_EINGABE:
+            _ui.setRueckzugebenderPreis(false);
+            break;
+
+        default:
+            break;
+        }
+    }
+
+    private bezahlZustand rueckgabeMoeglich()
+    {
+        if (_ui.getTextField()
+            .getText()
+            .matches("[0-9]*") && !_ui.getTextField()
+            .getText().contains(""))
+        {
+            Geld rueckgabe = berechneRückgabewert();
+            _ui.setRueckzugebenderPreis(rueckgabe);
+            if (rueckgabe.signum() != -1)
+            {
+                return bezahlZustand.AUSREICHEND;
+            }
+            else
+            {
+                return bezahlZustand.NICHT_AUSREICHEND;
+
+            }
+        }
+        else
+        {
+            return bezahlZustand.FALSCHE_EINGABE;
+        }
+    }
+
+    private Geld bezahlterPreis()
+    {
+        return new Geld(Long.parseLong(_ui.getTextField()
+            .getText()));
+    }
+
+    private Geld berechneRückgabewert()
+    {
+        return bezahlterPreis().substract(zuBezahlenderPreis);
+    }
+
+    private void bezahlt()
+    {
+        setChanged();
+        notifyObservers();
+    }
+
+}

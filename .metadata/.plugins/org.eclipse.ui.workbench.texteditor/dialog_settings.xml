@@ -2,22 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="parse" key="selection"/>
+		<item value="Focus" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="focus"/>
+			<item value="_frame"/>
 			<item value="parse"/>
 			<item value="foc"/>
-			<item value="focus"/>
 			<item value="Ruckzugebender"/>
 			<item value="Ruck"/>
 			<item value="DEFAULT_SELECTION_FILL"/>
 			<item value="color"/>
-			<item value="italic"/>
 		</list>
 		<list key="replacehistory">
+			<item value="_dialog"/>
 			<item value="Rueck"/>
 			<item value="Scene"/>
 		</list>

@@ -99,6 +99,7 @@ public class PlatzVerkaufsWerkzeug
 
         BezahlWerkzeug bezahlWerkzeug = new BezahlWerkzeug(
                 _vorstellung.getPreisFuerPlaetze(plaetze));
+
         bezahlWerkzeug.addObserver(new Observer()
         {
             @Override
@@ -107,6 +108,10 @@ public class PlatzVerkaufsWerkzeug
                 verkaufePlaetze(_vorstellung);
             }
         });
+        //Workaround, da das starten der UI vor setzen des Observers 
+        //nicht funktioniert, wahrscheinlich wegen des 
+        //swing event dispatching mechanism
+        bezahlWerkzeug.startUI();
     }
 
     /**

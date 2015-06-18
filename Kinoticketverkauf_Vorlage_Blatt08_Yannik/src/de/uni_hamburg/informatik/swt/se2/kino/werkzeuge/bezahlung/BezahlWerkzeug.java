@@ -3,7 +3,6 @@ package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
-
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -11,6 +10,11 @@ import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Geld;
 
 public class BezahlWerkzeug extends Observable
 {
+    private enum bezahlZustand
+    {
+        FALSCHE_EINGABE, NICHT_AUSREICHEND, AUSREICHEND
+    }
+
     private BezahlWerkzeugUI _ui;
 
     private Geld zuBezahlenderPreis;
@@ -18,9 +22,6 @@ public class BezahlWerkzeug extends Observable
     public BezahlWerkzeug(Geld preis)
     {
         zuBezahlenderPreis = preis;
-        _ui = new BezahlWerkzeugUI(zuBezahlenderPreis);
-        registriereUIAktionen();
-        _ui.zeigeFenster();
     }
 
     private void registriereUIAktionen()
@@ -31,8 +32,8 @@ public class BezahlWerkzeug extends Observable
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    bezahlt();
                     _ui.close();
+                    bezahlt();
                 }
             });
         _ui.getAbbrechenButton()
@@ -42,6 +43,19 @@ public class BezahlWerkzeug extends Observable
                 public void actionPerformed(ActionEvent e)
                 {
                     _ui.close();
+                }
+            });
+        _ui.getTextField()
+            .addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    if (rueckgabeMoeglich() == bezahlZustand.AUSREICHEND)
+                    {
+                        _ui.close();
+                        bezahlt();
+                    }
                 }
             });
         _ui.getTextField()
@@ -70,25 +84,45 @@ public class BezahlWerkzeug extends Observable
 
     private void textfieldUpdate()
     {
-        if (_ui.getTextField()
-            .getText()
-            .matches("[0-9]*"))
+        switch (rueckgabeMoeglich())
         {
-            Geld rueckgabe = berechneRückgabewert();
-            _ui.setRueckzugebenderPreis(rueckgabe);
-            if (rueckgabe.signum() != -1)
-            {
-                _ui.getOKButton()
-                    .setEnabled(true);
-            }
-            else
-            {
-                _ui.getOKButton()
-                    .setEnabled(false);
-            }
+        case AUSREICHEND:
+            _ui.getOKButton()
+                .setEnabled(true);
+            break;
+        case NICHT_AUSREICHEND:
+            _ui.getOKButton()
+                .setEnabled(false);
+            break;
+        case FALSCHE_EINGABE:
+            _ui.setRueckzugebenderPreis(false);
+            break;
+
+        default:
+            break;
         }
-        else{
-            _ui.setRueckzugebenderPreis(new Geld(-1));
+    }
+
+    private bezahlZustand rueckgabeMoeglich()
+    {
+        if (!_ui.getTextField()
+            .getText()
+            .matches("[0-9]*") || _ui.getTextField()
+            .getText()
+            .length() == 0)
+        {
+            return bezahlZustand.FALSCHE_EINGABE;
+        }
+
+        Geld rueckgabe = berechneRückgabewert();
+        _ui.setRueckzugebenderPreis(rueckgabe);
+        if (rueckgabe.signum() != -1)
+        {
+            return bezahlZustand.AUSREICHEND;
+        }
+        else
+        {
+            return bezahlZustand.NICHT_AUSREICHEND;
         }
     }
 
@@ -109,4 +143,10 @@ public class BezahlWerkzeug extends Observable
         notifyObservers();
     }
 
+    public void startUI()
+    {
+        _ui = new BezahlWerkzeugUI(zuBezahlenderPreis);
+        registriereUIAktionen();
+        _ui.zeigeFenster();
+    }
 }

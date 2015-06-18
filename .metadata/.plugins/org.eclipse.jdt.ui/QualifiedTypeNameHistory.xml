@@ -41,12 +41,10 @@
 <fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung.bezahlUI"/>
 <fullyQualifiedTypeName name="java.awt.GridBagLayout"/>
 <fullyQualifiedTypeName name="java.awt.FlowLayout"/>
-<fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Geld"/>
 <fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlung.BezahlWerkzeug"/>
 <fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.platzverkauf.PlatzVerkaufsWerkzeug"/>
 <fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.materialien.Vorstellung"/>
 <fullyQualifiedTypeName name="java.util.Observable"/>
-<fullyQualifiedTypeName name="java.util.Observer"/>
 <fullyQualifiedTypeName name="javax.swing.event.DocumentListener"/>
 <fullyQualifiedTypeName name="javax.swing.event.DocumentEvent"/>
 <fullyQualifiedTypeName name="javax.swing.JFormattedTextField"/>
@@ -54,4 +52,9 @@
 <fullyQualifiedTypeName name="javax.swing.SpinnerNumberModel"/>
 <fullyQualifiedTypeName name="javax.swing.text.PlainDocument"/>
 <fullyQualifiedTypeName name="javax.swing.text.DocumentFilter"/>
+<fullyQualifiedTypeName name="javax.swing.JDialog"/>
+<fullyQualifiedTypeName name="de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Geld"/>
+<fullyQualifiedTypeName name="java.util.Observer"/>
+<fullyQualifiedTypeName name="java.awt.event.WindowEvent"/>
+<fullyQualifiedTypeName name="java.awt.event.WindowAdapter"/>
 </qualifiedTypeNameHistroy>
