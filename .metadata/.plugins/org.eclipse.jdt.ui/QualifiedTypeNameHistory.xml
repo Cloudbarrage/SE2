@@ -9,5 +9,8 @@
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="se2.kino.werkzeuge.kasse.BarzahlungsWerkzeugUI"/>
 <fullyQualifiedTypeName name="java.lang.Float"/>
+<fullyQualifiedTypeName name="javax.swing.JDialog"/>
+<fullyQualifiedTypeName name="java.util.Observable"/>
+<fullyQualifiedTypeName name="java.util.Observer"/>
 <fullyQualifiedTypeName name="se2.kino.werkzeuge.kasse.BarzahlungsWerkzeug"/>
 </qualifiedTypeNameHistroy>

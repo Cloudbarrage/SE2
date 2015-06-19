@@ -2,24 +2,35 @@ package se2.kino.werkzeuge.kasse;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
-public class BarzahlungsWerkzeug implements ActionListener {
+public class BarzahlungsWerkzeug extends Observable {
 
 	private BarzahlungsWerkzeugUI _ui;
 	private int _preis;
+	private boolean _zahlungAusgefuehrt;
 
-	public BarzahlungsWerkzeug(int preis) {
-		_preis = preis;
-		
+	public BarzahlungsWerkzeug() {
 		_ui = new BarzahlungsWerkzeugUI();
 
 		registriereListener();
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO ActionEventsreaktionen Programieren.
+	/**
+	 * Kann aufgerufen werden, wenn ein Geldbetrag mit Barzahlung eingezogen
+	 * werden soll. Dann wird ein Barzahlungsfenster geöffnet.
+	 * 
+	 * @param preis
+	 *            der zu zahlende Preis.
+	 * @return true, wenn das Zahlen erfolgreich war, sonst false.
+	 */
+	public void ziehePreisEin(int preis) {
+		_preis = preis;
+		_zahlungAusgefuehrt = false;
+		_ui.getPreisAnzeige().setText(preis + " Eurocent");
 
+		_ui.zeigeFenster();
 	}
 
 	/**
@@ -27,33 +38,93 @@ public class BarzahlungsWerkzeug implements ActionListener {
 	 * inaktiv und das Rückgeld wird berechnet.
 	 */
 	private void aktualisiereAnzeige() {
-		_ui.getRueckgeldAnzeige().setText((berechneRueckgeld() / 100) + " Euro");
+		if (berechneRueckgeld() < 0) {
+			_ui.getRueckgeldAnzeige().setText("0 Eurocent");
+			_ui.getOKButton().setEnabled(false);
+		} else {
+			_ui.getRueckgeldAnzeige()
+					.setText(berechneRueckgeld() + " Eurocent");
+			_ui.getOKButton().setEnabled(true);
+		}
+		_ui.aktualisiereGroesse();
 	}
-	
+
 	/**
 	 * Berechnet das aktuell zu zahlende Rückgeld.
+	 * 
 	 * @return das Rückgeld.
 	 */
-	private int berechneRueckgeld(){
-		return _preis - getGeldeingabeInCent();
+	private int berechneRueckgeld() {
+		// Kleiner Workaround mit der -1. Geht sicher schöner durch die
+		// IMplementierung von Geldbetrag
+		return -1 * (_preis - getGeldeingabeInCent());
 	}
-	
+
 	/**
 	 * Gibt die eingegebene Geldsumme in Cent zurück.
-	 * @return
+	 * 
+	 * @return gibt den Geldbetrag als int in Eurocent zurück.
 	 */
-	private int getGeldeingabeInCent(){
+	private int getGeldeingabeInCent() {
 		String eingabeString = _ui.getGeldEingabe().getText();
-		
-		return (int) (Float.parseFloat(eingabeString) * 100);
+		if (eingabeString.matches("[0-9]+")){
+			eingabeString = eingabeString.replace(",", ".");
+			return (int) (Float.parseFloat(eingabeString));
+		} else {
+			_ui.getGeldEingabe().setText("");
+			return 0;
+		}
+	}
+
+	/**
+	 * Reagiert auf den OK Button.
+	 */
+	private void reagiereAufOKButton() {
+		_zahlungAusgefuehrt = true;
+		zahlungAbschließen();
+	}
+
+	/**
+	 * Reagiert auf den Abbrechen Button.
+	 */
+	private void reagiereAufAbbrechenButton() {
+		_zahlungAusgefuehrt = false;
+		zahlungAbschließen();
+	}
+
+	/**
+	 * Schließt die Zahlung ab. D.h. das Fenster wird geschlossen und die
+	 * Observer werden informiert.
+	 */
+	private void zahlungAbschließen() {
+		_ui.versteckeFenster();
+
+		setChanged();
+		notifyObservers();
+	}
+
+	/**
+	 * Prüft ob die letzte Zahlung erfolgreich war.
+	 * 
+	 * @return true, wenn gezahlt wurde. false sonst.
+	 */
+	public boolean zahlungErfolgreich() {
+		return _zahlungAusgefuehrt;
 	}
 
 	/**
 	 * Registriert alle notwendigen Listener.
 	 */
 	private void registriereListener() {
-		_ui.getOKButton().addActionListener(this);
-		_ui.getAbbrechenButton().addActionListener(this);
-		_ui.getGeldEingabe().addActionListener(this);
+		_ui.getOKButton().addActionListener(e -> {
+			reagiereAufOKButton();
+			;
+		});
+		_ui.getAbbrechenButton().addActionListener(e -> {
+			reagiereAufAbbrechenButton();
+		});
+		_ui.getGeldEingabe().addActionListener(e -> {
+			aktualisiereAnzeige();
+		});
 	}
 }

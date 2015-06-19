@@ -43,8 +43,6 @@ public class StartupKinoticketverkauf
                 new KassenWerkzeug(kino);
             }
         });
-        
-        new BarzahlungsWerkzeug(15);
     }
 
     /**

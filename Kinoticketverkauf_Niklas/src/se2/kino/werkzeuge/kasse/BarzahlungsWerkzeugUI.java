@@ -2,6 +2,7 @@ package se2.kino.werkzeuge.kasse;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,7 +17,7 @@ import javax.swing.JTextField;
 public class BarzahlungsWerkzeugUI {
 	private static final String TITEL = "Barzahlung";
 
-	private JFrame _frame;
+	private JDialog _dialog;
 	private JPanel _inputPanel;
 	private JPanel _calculationPanel;
 	private JPanel _buttonPanel;
@@ -32,8 +33,6 @@ public class BarzahlungsWerkzeugUI {
 		initInputPanel();
 		initCalculationPanel();
 		initButtonPanel();
-
-		zeigeFenster();
 	}
 
 	/**
@@ -41,14 +40,15 @@ public class BarzahlungsWerkzeugUI {
 	 */
 	private void initFrame() {
 		// TODO: JFrame erzeugen.
-		_frame = new JFrame(TITEL);
-		_frame.setLayout(new BoxLayout(_frame.getContentPane(),
+		_dialog = new JDialog();
+		_dialog.setTitle(TITEL);
+		_dialog.setModal(true);
+		_dialog.setLayout(new BoxLayout(_dialog.getContentPane(),
 				BoxLayout.Y_AXIS));
-		_frame.setBounds(1000, 500, 1, 1); // TODO: Das Fenster sollte beim
-											// öffnen am besten in der Mite
-											// sein.
-		_frame.setResizable(false);
-		_frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); // TODO: Überlegn
+
+		_dialog.setLocationRelativeTo(null);
+		_dialog.setResizable(false);
+		_dialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); // TODO: Überlegn
 																// ob hier
 																// sinnvoll.
 	}
@@ -68,7 +68,7 @@ public class BarzahlungsWerkzeugUI {
 		_inputPanel.add(label);
 		_inputPanel.add(_geldEingabe);
 
-		_frame.add(_inputPanel);
+		_dialog.add(_inputPanel);
 	}
 
 	/**
@@ -81,8 +81,8 @@ public class BarzahlungsWerkzeugUI {
 		JLabel rueckgeldBeschriftung = new JLabel("Rückgeld:");
 		JLabel preisBeschriftung = new JLabel("Preis:");
 
-		_preisLabel = new JLabel("0,00€");
-		_rueckgeldLabel = new JLabel("0,00€");
+		_preisLabel = new JLabel("0 Eurocent");
+		_rueckgeldLabel = new JLabel("0 Eurocent");
 
 		_calculationPanel = new JPanel();
 
@@ -91,7 +91,7 @@ public class BarzahlungsWerkzeugUI {
 		_calculationPanel.add(rueckgeldBeschriftung);
 		_calculationPanel.add(_rueckgeldLabel);
 
-		_frame.add(_calculationPanel);
+		_dialog.add(_calculationPanel);
 	}
 
 	/**
@@ -102,13 +102,14 @@ public class BarzahlungsWerkzeugUI {
 	private void initButtonPanel() {
 		// TODO: ButtonPanel erzeugen.
 		_okButton = new JButton("OK");
+		_okButton.setEnabled(false);
 		_abbrechenButton = new JButton("Abbrechen");
 
 		_buttonPanel = new JPanel();
 		_buttonPanel.add(_okButton);
 		_buttonPanel.add(_abbrechenButton);
 
-		_frame.add(_buttonPanel);
+		_dialog.add(_buttonPanel);
 	}
 
 	/**
@@ -116,8 +117,22 @@ public class BarzahlungsWerkzeugUI {
 	 */
 	public void zeigeFenster() {
 		// TODO: Fenster anzeigen.
-		_frame.pack();
-		_frame.setVisible(true);
+		aktualisiereGroesse();
+		_dialog.setVisible(true);
+	}
+	
+	/**
+	 * Versteckt das Fenster.
+	 */
+	public void versteckeFenster(){
+		_dialog.setVisible(false);
+	}
+	
+	/**
+	 * Passt die Größe des Dialoges der ELemente an.
+	 */
+	public void aktualisiereGroesse(){
+		_dialog.pack();
 	}
 	
 	/**
