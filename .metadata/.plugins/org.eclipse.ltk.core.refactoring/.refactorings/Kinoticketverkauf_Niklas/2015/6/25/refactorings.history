@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;de.uni_hamburg.informatik.swt.se2.kino&apos; to &apos;se2.kino&apos;&#x0D;&#x0A;- Original project: &apos;Kinoticketverkauf_Niklas&apos;&#x0D;&#x0A;- Original element: &apos;Kinoticketverkauf_Niklas/src/de.uni_hamburg.informatik.swt.se2.kino&apos;&#x0D;&#x0A;- Renamed element: &apos;Kinoticketverkauf_Niklas/src/se2.kino&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings&#x0D;&#x0A;- Rename subpackages of the package" description="Rename package &apos;de.uni_hamburg.informatik.swt.se2.kino&apos;" flags="589830" hierarchical="true" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;de.uni_hamburg.informatik.swt.se2.kino" name="se2.kino" qualified="false" references="true" stamp="1434697246036" textual="false" version="1.0"/>
+</session>
