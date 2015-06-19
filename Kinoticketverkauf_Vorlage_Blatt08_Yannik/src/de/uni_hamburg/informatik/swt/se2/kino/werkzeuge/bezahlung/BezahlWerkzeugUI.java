@@ -39,48 +39,48 @@ public class BezahlWerkzeugUI
         _dialog.setResizable(false);
         _dialog.setAlwaysOnTop(true);
         _dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        _dialog.getContentPane().setLayout(new BorderLayout(5, 5));
-        
+        _dialog.getContentPane()
+            .setLayout(new BorderLayout(5, 5));
+
         panel = new JPanel();
         FlowLayout flowLayout = (FlowLayout) panel.getLayout();
         flowLayout.setVgap(15);
         panel.setBorder(new LineBorder(SystemColor.window));
-        _dialog.getContentPane().add(panel, BorderLayout.NORTH);
-        
-                _verticalBox_1 = Box.createVerticalBox();
-                panel.add(_verticalBox_1);
-                
-                        _verticalBox = Box.createVerticalBox();
-                        _verticalBox_1.add(_verticalBox);
-                        
-                                _zuZahlenderPreis = new JTextPane();
-                                _zuZahlenderPreis.setEditable(false);
-                                _verticalBox.add(_zuZahlenderPreis);
-                                _zuZahlenderPreis.setBackground(SystemColor.window);
-                                _zuZahlenderPreis.setText("Zu bezahlen: " + preis);
-                                
-                                        _textField = new JTextField();
-                                        _verticalBox.add(_textField);
-                                        _textField.setColumns(5);
-                                        
-                                                _rueckzugebenderPreis = new JTextPane();
-                                                _rueckzugebenderPreis.setEditable(false);
-                                                _verticalBox.add(_rueckzugebenderPreis);
-                                                _rueckzugebenderPreis.setBackground(SystemColor.window);
-                                                _rueckzugebenderPreis.setText("Betrag nicht ausreichend");
-                                                
-                                                        _horizontalBox = Box.createHorizontalBox();
-                                                        _verticalBox_1.add(_horizontalBox);
-                                                        
-                                                                _ok = new JButton("OK");
-                                                                _horizontalBox.add(_ok);
-                                                                _ok.setEnabled(false);
-                                                                
-                                                                        _abbrechen = new JButton("Abbrechen");
-                                                                        _horizontalBox.add(_abbrechen);
-    }
+        _dialog.getContentPane()
+            .add(panel, BorderLayout.NORTH);
 
-    
+        _verticalBox_1 = Box.createVerticalBox();
+        panel.add(_verticalBox_1);
+
+        _verticalBox = Box.createVerticalBox();
+        _verticalBox_1.add(_verticalBox);
+
+        _zuZahlenderPreis = new JTextPane();
+        _zuZahlenderPreis.setEditable(false);
+        _verticalBox.add(_zuZahlenderPreis);
+        _zuZahlenderPreis.setBackground(SystemColor.window);
+        _zuZahlenderPreis.setText("Zu bezahlen: " + preis);
+
+        _textField = new JTextField();
+        _verticalBox.add(_textField);
+        _textField.setColumns(5);
+
+        _rueckzugebenderPreis = new JTextPane();
+        _rueckzugebenderPreis.setEditable(false);
+        _verticalBox.add(_rueckzugebenderPreis);
+        _rueckzugebenderPreis.setBackground(SystemColor.window);
+        _rueckzugebenderPreis.setText("Betrag nicht ausreichend");
+
+        _horizontalBox = Box.createHorizontalBox();
+        _verticalBox_1.add(_horizontalBox);
+
+        _ok = new JButton("OK");
+        _horizontalBox.add(_ok);
+        _ok.setEnabled(false);
+
+        _abbrechen = new JButton("Abbrechen");
+        _horizontalBox.add(_abbrechen);
+    }
 
     public JTextField getTextField()
     {
@@ -116,8 +116,6 @@ public class BezahlWerkzeugUI
         _dialog.setLocationRelativeTo(null);
         _dialog.setVisible(true);
     }
-
-
 
     public JTextPane getRueckzugebenderPreis()
     {
