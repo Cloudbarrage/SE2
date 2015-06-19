@@ -95,11 +95,31 @@ public class BezahlWerkzeug extends Observable
                 .setEnabled(false);
             break;
         case FALSCHE_EINGABE:
-            _ui.setRueckzugebenderPreis(false);
+            setRueckzugebenderPreis(false);
             break;
 
         default:
             break;
+        }
+    }
+    
+    public void setRueckzugebenderPreis(Geld preis)
+    {
+        if (preis.signum() != -1)
+        {
+            _ui.getRueckzugebenderPreis().setText("Rueckgabe: " + preis);
+        }
+        else
+        {
+            setRueckzugebenderPreis(false);
+        }
+    }
+
+    public void setRueckzugebenderPreis(boolean beFalse)
+    {
+        if (!beFalse)
+        {
+            _ui.getRueckzugebenderPreis().setText("Betrag nicht ausreichend");
         }
     }
 
@@ -115,7 +135,7 @@ public class BezahlWerkzeug extends Observable
         }
 
         Geld rueckgabe = berechneRückgabewert();
-        _ui.setRueckzugebenderPreis(rueckgabe);
+        setRueckzugebenderPreis(rueckgabe);
         if (rueckgabe.signum() != -1)
         {
             return bezahlZustand.AUSREICHEND;
