@@ -1,0 +1,91 @@
+package se2.kino.werkzeuge.kasse;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+/**
+ * Due UI-Klasse zu {@link BarzahlungsWerkzeug}
+ * 
+ * @author Niklas
+ *
+ */
+public class BarzahlungsWerkzeugUI {
+	private static final String TITEL = "Barzahlung";
+
+	private JFrame _frame;
+	private JPanel _inputPanel;
+	private JPanel _calculationPanel;
+	private JPanel _buttonPanel;
+	private JTextField _geldEingabe;
+	private JLabel _preisLabel;
+	private JLabel _rueckgeldLabel;
+
+	public BarzahlungsWerkzeugUI() {
+		// TODO: GUI-Elemente erzeugen.
+		initFrame();
+		initInputPanel();
+		
+		zeigeFenster();
+	}
+
+	/**
+	 * Initialisiert den HauptFrame des Fensters.
+	 */
+	private void initFrame() {
+		// TODO: JFrame erzeugen.
+		_frame = new JFrame(TITEL);
+        _frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	/**
+	 * Initialisiert das Input Panel. Das Input Panel besteht aus einem Label,
+	 * welches dem Benutzer zeigt, welcher Wert eingegeben werden soll und ein
+	 * Textfeld für den Geldbetrag, der Bar gezahlt wurde.
+	 */
+	private void initInputPanel() {
+		// TODO: input Panel erzeugen.
+		JLabel label = new JLabel("Gegebenes Geld:");
+		_geldEingabe = new JTextField(5);
+		
+		_inputPanel = new JPanel();
+		
+		_inputPanel.add(label);
+		_inputPanel.add(_geldEingabe);
+		
+		_frame.add(_inputPanel);
+	}
+
+	/**
+	 * Initialisiert das Calculation Panel. In diesem befinden sich JLabel mit
+	 * den Informationen über: den akutell eingezahlten Betrag, den zu zahlenden
+	 * Betrag.
+	 */
+	private void initCalculationPanel() {
+		// TODO: Calculation Panel erzeugen.
+		JLabel rueckgeldBeschriftung = new JLabel("Rückgeld:");
+		JLabel gezahlteBeschriftung = new JLabel("Gegeben:");
+		
+		_preisAnzeige = new JLabel("0,00€");
+		_
+	}
+
+	/**
+	 * Initialisiert das Button Panel. Hier gibt es zwei Buttons. Einen um die
+	 * BArzahlung auszuführen (nur aktiv, wenn genügend Bargeld bezahlt wurde)
+	 * und einen zum Abrrechen, falls sich ein Kinobesucher es anders überlegt.
+	 */
+	private void initButtonPanel() {
+		// TODO: ButtonPanel erzeugen.
+	}
+	
+	/**
+	 * Zeigt das Fenster an, mit dem der Benutzer Barzahlungen vornehmen kann.
+	 */
+	public void zeigeFenster() {
+		//TODO: Fenster anzeigen.
+		_frame.pack();
+		_frame.setVisible(true);
+	}
+}

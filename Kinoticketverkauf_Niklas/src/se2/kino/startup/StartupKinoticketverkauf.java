@@ -9,6 +9,8 @@ import se2.kino.materialien.Film;
 import se2.kino.materialien.Kino;
 import se2.kino.materialien.Kinosaal;
 import se2.kino.materialien.Vorstellung;
+import se2.kino.werkzeuge.kasse.BarzahlungsWerkzeug;
+import se2.kino.werkzeuge.kasse.BarzahlungsWerkzeugUI;
 import se2.kino.werkzeuge.kasse.KassenWerkzeug;
 
 /**
@@ -41,6 +43,8 @@ public class StartupKinoticketverkauf
                 new KassenWerkzeug(kino);
             }
         });
+        
+        new BarzahlungsWerkzeug(15);
     }
 
     /**

@@ -1,0 +1,15 @@
+package se2.kino.werkzeuge.kasse;
+
+/**
+ * Due UI-Klasse zu {@link BarzahlungsWerkzeug}
+ * 
+ * @author Niklas
+ *
+ */
+public class BarzahlungsWerkzeugUI {
+	private static final String TITEL = "Barzahlung";
+
+	public BarzahlungsWerkzeugUI() {
+
+	}
+}

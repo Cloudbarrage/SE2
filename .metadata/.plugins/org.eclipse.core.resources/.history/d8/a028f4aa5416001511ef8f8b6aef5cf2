@@ -1,0 +1,61 @@
+package se2.kino.werkzeuge.kasse;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+/**
+ * Due UI-Klasse zu {@link BarzahlungsWerkzeug}
+ * 
+ * @author Niklas
+ *
+ */
+public class BarzahlungsWerkzeugUI {
+	private static final String TITEL = "Barzahlung";
+
+	private JFrame _frame;
+	private JPanel _inputPanel;
+	private JPanel _calculationPanel;
+	private JPanel _buttonPanel;
+
+	public BarzahlungsWerkzeugUI() {
+		// TODO: GUI-Elemente erzeugen.
+	}
+
+	/**
+	 * Initialisiert den HauptFrame des Fensters.
+	 */
+	private void initFrame() {
+		// TODO: JFrame erzeugen.
+	}
+
+	/**
+	 * Initialisiert das Input Panel. Das Input Panel besteht aus einem Label,
+	 * welches dem Benutzer zeigt, welcher Wert eingegeben werden soll und ein
+	 * Textfeld für den Geldbetrag, der Bar gezahlt wurde.
+	 */
+	private void initInputPanel() {
+		// TODO: input Panel erzeugen.
+	}
+
+	/**
+	 * Initialisiert das Calculation Panel. In diesem befinden sich JLabel mit
+	 * den Informationen über: den akutell eingezahlten Betrag, den zu zahlenden
+	 * Betrag.
+	 */
+	private void initCalculationPanel() {
+		// TODO: Calculation Panel erzeugen.
+	}
+
+	/**
+	 * Initialisiert das Button Panel. Hier gibt es zwei Buttons. Einen um die
+	 * BArzahlung auszuführen (nur aktiv, wenn genügend Bargeld bezahlt wurde)
+	 * und einen zum Abrrechen, falls sich ein Kinobesucher es anders überlegt.
+	 */
+	private void initButtonPanel() {
+		// TODO: ButtonPanel erzeugen.
+	}
+	
+	public void zeigeFenster() {
+		
+	}
+}

@@ -1,0 +1,24 @@
+package se2.kino.werkzeuge.kasse;
+
+/**
+ * Due UI-Klasse zu {@link BarzahlungsWerkzeug}
+ * 
+ * @author Niklas
+ *
+ */
+public class BarzahlungsWerkzeugUI {
+	private static final String TITEL = "Barzahlung";
+
+	private JFrame _frame;
+	
+	public BarzahlungsWerkzeugUI() {
+		//TODO: GUI-Elemente erzeugen.
+	}
+	
+	/**
+	 * Initialisiert den HauptFrame des Fensters.
+	 */
+	public void initFrame(){
+		//TODO: JFrame erzeugen.
+	}
+}
