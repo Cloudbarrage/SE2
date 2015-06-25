@@ -57,8 +57,16 @@ public class beobachterMusterTest
         assertTrue(_beobachterB.getCounter() == 6);
         assertTrue(_beobachterC.getCounter() == 6);
         
+        _beobachtbar1.registriereBeobachter(_beobachterB);
         
+        for(int a = 0; a < 100000000; ++a)
+        {
+            _beobachtbar1.informiereUeberAenderung();
+        }
         
+        assertTrue(_beobachterA.getCounter() == 100000008);
+        assertTrue(_beobachterB.getCounter() == 100000006);
+        assertTrue(_beobachterC.getCounter() == 100000006);
     }
 
 }
