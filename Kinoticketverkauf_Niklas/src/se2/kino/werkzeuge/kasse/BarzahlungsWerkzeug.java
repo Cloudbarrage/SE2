@@ -1,9 +1,6 @@
 package se2.kino.werkzeuge.kasse;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
-import java.util.Observer;
 
 public class BarzahlungsWerkzeug extends Observable {
 
