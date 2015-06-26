@@ -26,6 +26,9 @@ public class BarzahlungsWerkzeug extends Observable {
 		_preis = preis;
 		_zahlungAusgefuehrt = false;
 		_ui.getPreisAnzeige().setText(preis + " Eurocent");
+		_ui.getGeldEingabe().setText("");
+		_ui.getRueckgeldAnzeige().setText("0 Eurocent");
+		_ui.getOKButton().setEnabled(false);
 
 		_ui.zeigeFenster();
 	}
@@ -53,7 +56,7 @@ public class BarzahlungsWerkzeug extends Observable {
 	 */
 	private int berechneRueckgeld() {
 		// Kleiner Workaround mit der -1. Geht sicher schöner durch die
-		// IMplementierung von Geldbetrag
+		// Implementierung von Geldbetrag
 		return -1 * (_preis - getGeldeingabeInCent());
 	}
 
@@ -65,7 +68,7 @@ public class BarzahlungsWerkzeug extends Observable {
 	private int getGeldeingabeInCent() {
 		String eingabeString = _ui.getGeldEingabe().getText();
 		if (eingabeString.matches("[0-9]+")){
-			eingabeString = eingabeString.replace(",", ".");
+			//eingabeString = eingabeString.replace(",", "."); <<- nicht nötig nur Eurocent.
 			return (int) (Float.parseFloat(eingabeString));
 		} else {
 			_ui.getGeldEingabe().setText("");
@@ -115,7 +118,6 @@ public class BarzahlungsWerkzeug extends Observable {
 	private void registriereListener() {
 		_ui.getOKButton().addActionListener(e -> {
 			reagiereAufOKButton();
-			;
 		});
 		_ui.getAbbrechenButton().addActionListener(e -> {
 			reagiereAufAbbrechenButton();

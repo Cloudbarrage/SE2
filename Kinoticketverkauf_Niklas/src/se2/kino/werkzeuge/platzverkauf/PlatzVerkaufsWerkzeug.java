@@ -86,18 +86,18 @@ public class PlatzVerkaufsWerkzeug {
 	 * Startet die Barzahlung.
 	 */
 	private void fuehreBarzahlungDurch() {
-		BarzahlungsWerkzeug zahlungsWerkzeug = new BarzahlungsWerkzeug();
-		zahlungsWerkzeug.addObserver((observable, object) -> {
+		//BarzahlungsWerkzeug zahlungsWerkzeug = new BarzahlungsWerkzeug();
+		_zahlungsWerkzeug.addObserver((observable, object) -> {
 			// Eventuell auslagern in andere Methode. Ist hier aber noch
 			// übersichtlich genug.
-				if (zahlungsWerkzeug.zahlungErfolgreich() == true) {
+				if (_zahlungsWerkzeug.zahlungErfolgreich() == true) {
 					verkaufePlaetze(_vorstellung);
 				} else {
 					_ui.getPlatzplan().entferneAuswahl();
 				}
 			});
 
-		zahlungsWerkzeug.ziehePreisEin(_vorstellung.getPreisFuerPlaetze(_ui
+		_zahlungsWerkzeug.ziehePreisEin(_vorstellung.getPreisFuerPlaetze(_ui
 				.getPlatzplan().getAusgewaehltePlaetze()));
 	}
 
