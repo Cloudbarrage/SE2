@@ -19,7 +19,8 @@ public class BarzahlungsWerkzeugUI {
 
 	private JDialog _dialog;
 	private JPanel _inputPanel;
-	private JPanel _calculationPanel;
+	private JPanel _brechnungsPanel;
+	private JPanel _preisPanel;
 	private JPanel _buttonPanel;
 	private JTextField _geldEingabe;
 	private JLabel _preisLabel;
@@ -48,9 +49,7 @@ public class BarzahlungsWerkzeugUI {
 
 		_dialog.setLocationRelativeTo(null);
 		_dialog.setResizable(false);
-		_dialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); // TODO: Überlegn
-																// ob hier
-																// sinnvoll.
+		_dialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	}
 
 	/**
@@ -84,19 +83,22 @@ public class BarzahlungsWerkzeugUI {
 		_preisLabel = new JLabel("0 Eurocent");
 		_rueckgeldLabel = new JLabel("0 Eurocent");
 
-		_calculationPanel = new JPanel();
+		
+		_brechnungsPanel = new JPanel();
+		_preisPanel = new JPanel();
 
-		_calculationPanel.add(preisBeschriftung);
-		_calculationPanel.add(_preisLabel);
-		_calculationPanel.add(rueckgeldBeschriftung);
-		_calculationPanel.add(_rueckgeldLabel);
+		_preisPanel.add(preisBeschriftung);
+		_preisPanel.add(_preisLabel);
+		_brechnungsPanel.add(rueckgeldBeschriftung);
+		_brechnungsPanel.add(_rueckgeldLabel);
 
-		_dialog.add(_calculationPanel);
+		_dialog.add(_preisPanel);
+		_dialog.add(_brechnungsPanel);
 	}
 
 	/**
 	 * Initialisiert das Button Panel. Hier gibt es zwei Buttons. Einen um die
-	 * BArzahlung auszuführen (nur aktiv, wenn genügend Bargeld bezahlt wurde)
+	 * Barzahlung auszuführen (nur aktiv, wenn genügend Bargeld bezahlt wurde)
 	 * und einen zum Abrrechen, falls sich ein Kinobesucher es anders überlegt.
 	 */
 	private void initButtonPanel() {
@@ -120,59 +122,66 @@ public class BarzahlungsWerkzeugUI {
 		aktualisiereGroesse();
 		_dialog.setVisible(true);
 	}
-	
+
 	/**
 	 * Versteckt das Fenster.
 	 */
-	public void versteckeFenster(){
+	public void versteckeFenster() {
 		_dialog.setVisible(false);
 	}
-	
+
 	/**
 	 * Passt die Größe des Dialoges der ELemente an.
 	 */
-	public void aktualisiereGroesse(){
+	public void aktualisiereGroesse() {
 		_dialog.pack();
 	}
-	
+
 	/**
 	 * Gibt das Geldeingabe Feld des Fensters zurück.
+	 * 
 	 * @return Das Geldeingabefeld.
 	 */
 	public JTextField getGeldEingabe() {
 		return _geldEingabe;
 	}
-	
+
 	/**
 	 * Gibt das Label zurück, dass den Preis der Karten anzeigen soll.
+	 * 
 	 * @return das Preis JLabel.
 	 */
-	public JLabel getPreisAnzeige(){
+	public JLabel getPreisAnzeige() {
 		return _preisLabel;
 	}
-	
+
 	/**
-	 * Gibt das Label zurück, welches anzeigt wie viel Rückgeld der Kunde erhält.
+	 * Gibt das Label zurück, welches anzeigt wie viel Rückgeld der Kunde
+	 * erhält.
+	 * 
 	 * @return das Rückgeld JLabel.
 	 */
-	public JLabel getRueckgeldAnzeige(){
+	public JLabel getRueckgeldAnzeige() {
 		return _rueckgeldLabel;
 	}
-	
+
 	/**
 	 * Gibt den Button zurück, der den Vorgang beendet und die Karten verkauft.
+	 * 
 	 * @return der OK JButton.
 	 */
-	public JButton getOKButton(){
+	public JButton getOKButton() {
 		return _okButton;
 	}
-	
+
 	/**
-	 * Gibt den Button zurück, der den Vorgang abbricht und die Plätze nicht verkauft.
+	 * Gibt den Button zurück, der den Vorgang abbricht und die Plätze nicht
+	 * verkauft.
+	 * 
 	 * @return der Abrrechen JButton.
 	 */
-	public JButton getAbbrechenButton(){
+	public JButton getAbbrechenButton() {
 		return _abbrechenButton;
 	}
-	
+
 }
