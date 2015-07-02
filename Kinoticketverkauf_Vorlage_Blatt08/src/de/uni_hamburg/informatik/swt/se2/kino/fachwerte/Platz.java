@@ -79,7 +79,7 @@ public final class Platz
         {
             reihe = "0" + (_reihe + 1);
         }
-        else if(_sitz < 10)
+        if(_sitz < 10)
         {
             sitz = "0" + _sitz;
         }

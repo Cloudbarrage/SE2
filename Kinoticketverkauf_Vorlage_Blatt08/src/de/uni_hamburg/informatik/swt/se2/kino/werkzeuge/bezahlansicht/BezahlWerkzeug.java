@@ -27,12 +27,17 @@ public class BezahlWerkzeug extends ObservableSubwerkzeug
         _ausgewaehltePlaetze = plaetze;
         _ui = new BezahlWerkzeugUI();
         
-        _ui.setPreisField(toString(_preis));
-        _ui.setAusgewaehltePlaetzeTxtField(ausgewaehltePlaetze());
-        _ui.setAusgewaehlteVorstellungField(_vorstellung.getDatum().getFormatiertenString(), ausgewaehlteVorstellung());
+        setFinalFields();
         aktualisiereBezahlanzeige();
         registriereUIAktionen();
         _ui.setModal();
+    }
+    
+    public void setFinalFields()
+    {
+        _ui.setPreisField(toString(_preis));
+        _ui.setAusgewaehltePlaetzeTxtField(ausgewaehltePlaetze());
+        _ui.setAusgewaehlteVorstellungField(_vorstellung.getDatum().getFormatiertenString(), ausgewaehlteVorstellung());
     }
 
     public void registriereUIAktionen()
@@ -139,7 +144,7 @@ public class BezahlWerkzeug extends ObservableSubwerkzeug
     
     public String ausgewaehlteVorstellung()
     {
-        return _vorstellung.toString();
+        return _vorstellung.toStringAnders();
     }
 
     public BezahlWerkzeugUI getBezahlWerkzeugUI()

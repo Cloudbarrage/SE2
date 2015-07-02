@@ -342,6 +342,11 @@ public class Vorstellung
     {
         return _anfangszeit + ", " + _kinosaal + ", " + _film;
     }
+    
+    public String toStringAnders()
+    {
+        return _anfangszeit + " Uhr" + ", " + _kinosaal + ", " + "\n" + _film;
+    }
 
     /**
      * Gibt an, ob ein bestimmter Platz bereits verkauft ist.
