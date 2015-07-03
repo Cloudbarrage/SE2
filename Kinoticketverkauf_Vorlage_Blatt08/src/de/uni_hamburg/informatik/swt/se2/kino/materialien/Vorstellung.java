@@ -22,7 +22,7 @@ public class Vorstellung
     private Uhrzeit _anfangszeit;
     private Uhrzeit _endzeit;
     private Datum _datum;
-    private int _preis;
+    private int _preis; //TODO: abändern in geldbetrag
     private boolean[][] _verkauft;
     private int _anzahlVerkauftePlaetze;
 

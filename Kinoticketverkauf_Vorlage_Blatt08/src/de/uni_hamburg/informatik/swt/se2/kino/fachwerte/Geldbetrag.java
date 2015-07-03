@@ -1,6 +1,3 @@
-/**
- * 
- */
 package de.uni_hamburg.informatik.swt.se2.kino.fachwerte;
 
 import java.util.regex.Matcher;
@@ -22,6 +19,7 @@ public class Geldbetrag
         _cent = eurocent % 100;
     }
 
+    
     public static Geldbetrag valueOf(int euro, int cent)
     {
         return new Geldbetrag(euro, cent);
