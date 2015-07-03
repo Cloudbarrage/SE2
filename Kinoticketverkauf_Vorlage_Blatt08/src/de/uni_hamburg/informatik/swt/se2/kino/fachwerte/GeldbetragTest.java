@@ -81,30 +81,44 @@ public class GeldbetragTest
     @Test
     public void testeStringToGeldbetrag()
     {
-        assertEquals(-12, Geldbetrag.stringToGeldbetrag("-10,-222€").euroAnteil());
-        assertEquals(-22, Geldbetrag.stringToGeldbetrag("-10,-222€").centAnteil());
+        assertEquals(-12, Geldbetrag.valueOf("-10,-222€").euroAnteil());
+        assertEquals(-22, Geldbetrag.valueOf("-10,-222€").centAnteil());
+        assertEquals(-11, Geldbetrag.valueOf("-11").euroAnteil());
+        assertEquals(0, Geldbetrag.valueOf("-11").centAnteil());
+        assertEquals(-10, Geldbetrag.valueOf("-11,45").euroAnteil());
+        assertEquals(-55, Geldbetrag.valueOf("-11,45").centAnteil());
     }
     
     @Test
     public void testeIntegerToGeldbetrag()
     {
-        assertEquals(-12, Geldbetrag.integerToGeldbetrag(Integer.valueOf(-1222)).euroAnteil());
-        assertEquals(-22, Geldbetrag.integerToGeldbetrag(Integer.valueOf(-1222)).centAnteil());
+        assertEquals(-12, Geldbetrag.valueOf(Integer.valueOf(-1222)).euroAnteil());
+        assertEquals(-22, Geldbetrag.valueOf(Integer.valueOf(-1222)).centAnteil());
     }
     
     @Test
     public void testeIntToGeldbetrag()
     {
-        assertEquals(-12, Geldbetrag.intToGeldbetrag(-1222).euroAnteil());
-        assertEquals(-22, Geldbetrag.intToGeldbetrag(-1222).centAnteil());
+        assertEquals(-12, Geldbetrag.valueOf(-1222).euroAnteil());
+        assertEquals(-22, Geldbetrag.valueOf(-1222).centAnteil());
     }
     
     @Test
     public void testeToString()
     {
         Geldbetrag test = Geldbetrag.valueOf(15, 5);
+        Geldbetrag test2 = Geldbetrag.valueOf(0, -1);
         assertEquals("7,78€", d.toString());
         assertEquals("15,00€", a.toString());
         assertEquals("15,05€", test.toString());
+        assertEquals("-0,01€", test2.toString());
+    }
+    
+    @Test
+    public void testeEquals()
+    {
+        Geldbetrag test = Geldbetrag.valueOf(15, 0);
+        assertTrue(Geldbetrag.valueOf(15, 0).equals(test));
+        assertFalse(Geldbetrag.valueOf(-15, 0).equals(test));
     }
 }

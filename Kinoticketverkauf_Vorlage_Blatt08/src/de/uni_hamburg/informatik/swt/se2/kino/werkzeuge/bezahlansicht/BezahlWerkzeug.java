@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
 
+import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Geldbetrag;
 import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Platz;
 import de.uni_hamburg.informatik.swt.se2.kino.materialien.Vorstellung;
 import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.ObservableSubwerkzeug;
@@ -11,8 +12,8 @@ import de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.ObservableSubwerkzeug;
 public class BezahlWerkzeug extends ObservableSubwerkzeug
 {
     private Vorstellung _vorstellung;
-    private int _gezahlterBetrag;
-    private final int _preis;
+    private Geldbetrag _gezahlterBetrag; //TODO
+    private final Geldbetrag _preis;
     private final Set<Platz> _ausgewaehltePlaetze;
     private BezahlWerkzeugUI _ui;
 
@@ -22,7 +23,7 @@ public class BezahlWerkzeug extends ObservableSubwerkzeug
     public BezahlWerkzeug(Vorstellung vorstellung, Set<Platz> plaetze)
     {
         _vorstellung = vorstellung;
-        _gezahlterBetrag = 0;
+        _gezahlterBetrag = Geldbetrag.valueOf(0, 0);
         _preis = vorstellung.getPreisFuerPlaetze(plaetze);
         _ausgewaehltePlaetze = plaetze;
         _ui = new BezahlWerkzeugUI();
@@ -35,7 +36,7 @@ public class BezahlWerkzeug extends ObservableSubwerkzeug
     
     public void setFinalFields()
     {
-        _ui.setPreisField(toString(_preis));
+        _ui.setPreisField(_preis.toString());
         _ui.setAusgewaehltePlaetzeTxtField(ausgewaehltePlaetze());
         _ui.setAusgewaehlteVorstellungField(_vorstellung.getDatum().getFormatiertenString(), ausgewaehlteVorstellung());
     }
@@ -69,7 +70,7 @@ public class BezahlWerkzeug extends ObservableSubwerkzeug
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    _gezahlterBetrag = _ui.getGezahltenBetrag();
+                    _gezahlterBetrag = Geldbetrag.valueOf(_ui.getEingabeGezahlterBetragField());
                     if (gezahlterBetragAusreichend())
                     {
                         _ui.getOKButton()
@@ -84,20 +85,20 @@ public class BezahlWerkzeug extends ObservableSubwerkzeug
             });
     }
 
-    public int getGezahltenBetrag()
-    {
-        return _ui.getGezahltenBetrag();
-    }
+//    public int getGezahltenBetrag()
+//    {
+//        return _ui.getGezahltenBetrag();
+//    }
 
     /**
      * @return Derjenige Geldbetrag, der noch gezahlt werden muss. 
      */
-    public int getRestbetrag()
+    public Geldbetrag getRestbetrag()
     {
-        int restbetrag = _preis - _gezahlterBetrag;
-        if (restbetrag < 0)
+        Geldbetrag restbetrag = _preis.subtrahiere(_gezahlterBetrag);
+        if (restbetrag.centAnteil() < 0  || restbetrag.euroAnteil() < 0)
         {
-            restbetrag = 0;
+            restbetrag = Geldbetrag.valueOf(0, 0);
         }
         return restbetrag;
     }
@@ -105,12 +106,12 @@ public class BezahlWerkzeug extends ObservableSubwerkzeug
     /**
      * @return Derjenige Geldbetrag, der vom Kassierer zurueckgegeben werden muss. 
      */
-    public int getWechselgeld()
+    public Geldbetrag getWechselgeld()
     {
-        int wechselgeld = (-1) * (_preis - _gezahlterBetrag);
-        if (wechselgeld < 0)
+        Geldbetrag wechselgeld = _preis.subtrahiere(_gezahlterBetrag).multipliziereMit(-1);
+        if (wechselgeld.centAnteil() < 0  || wechselgeld.euroAnteil() < 0)
         {
-            wechselgeld = 0;
+            wechselgeld = Geldbetrag.valueOf(0, 0);
         }
         return wechselgeld;
     }
@@ -122,14 +123,17 @@ public class BezahlWerkzeug extends ObservableSubwerkzeug
 
     public boolean gezahlterBetragAusreichend()
     {
-        return (_gezahlterBetrag >= _preis);
+        return (_gezahlterBetrag.grösserGleich(_preis));
     }
 
     public void aktualisiereBezahlanzeige()
     {
-        _ui.setGezahlterBetragField(toString(_gezahlterBetrag));
-        _ui.setRestbetragField(toString(getRestbetrag()));
-        _ui.setWechselgeldField(toString(getWechselgeld()));
+//        _ui.setGezahlterBetragField(toString(_gezahlterBetrag));
+//        _ui.setRestbetragField(toString(getRestbetrag()));
+//        _ui.setWechselgeldField(toString(getWechselgeld()));
+        _ui.setGezahlterBetragField(_gezahlterBetrag.toString());
+        _ui.setRestbetragField(getRestbetrag().toString());
+        _ui.setWechselgeldField(getWechselgeld().toString());
     }
     
     public String ausgewaehltePlaetze()
