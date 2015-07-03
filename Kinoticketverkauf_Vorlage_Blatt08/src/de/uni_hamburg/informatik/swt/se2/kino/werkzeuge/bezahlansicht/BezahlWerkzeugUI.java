@@ -12,7 +12,6 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import java.awt.Font;
-import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Color;
 
@@ -42,7 +41,6 @@ public class BezahlWerkzeugUI
         initializeTextFields();
         initializeTextAreas();
         initializeSeparators();
-        initializeBemerkung();
     }
 
     private void initializeJDialog()
@@ -119,7 +117,7 @@ public class BezahlWerkzeugUI
         txtrZuZahlenderBetrag.setFont(new Font("DINPro-Medium", Font.PLAIN, 13));
         txtrZuZahlenderBetrag.setEditable(false);
         txtrZuZahlenderBetrag.setBackground(UIManager.getColor("FormattedTextField.inactiveBackground"));
-        txtrZuZahlenderBetrag.setText("Zu zahlender Betrag: *");
+        txtrZuZahlenderBetrag.setText("Zu zahlender Betrag: ");
         txtrZuZahlenderBetrag.setBounds(181, 107, 136, 20);
         _hauptpanel.add(txtrZuZahlenderBetrag);
 
@@ -128,7 +126,7 @@ public class BezahlWerkzeugUI
                 13));
         txtrZuZahlenderBetrag_1.setEditable(false);
         txtrZuZahlenderBetrag_1.setBackground(UIManager.getColor("FormattedTextField.inactiveBackground"));
-        txtrZuZahlenderBetrag_1.setText("Gezahlter Betrag: *");
+        txtrZuZahlenderBetrag_1.setText("Gezahlter Betrag: ");
         txtrZuZahlenderBetrag_1.setBounds(181, 131, 136, 20);
         _hauptpanel.add(txtrZuZahlenderBetrag_1);
 
@@ -136,7 +134,7 @@ public class BezahlWerkzeugUI
         txtrRestbetrag.setFont(new Font("DINPro-Medium", Font.PLAIN, 13));
         txtrRestbetrag.setEditable(false);
         txtrRestbetrag.setBackground(UIManager.getColor("FormattedTextField.inactiveBackground"));
-        txtrRestbetrag.setText("Restbetrag: *");
+        txtrRestbetrag.setText("Restbetrag: ");
         txtrRestbetrag.setBounds(181, 161, 136, 20);
         _hauptpanel.add(txtrRestbetrag);
 
@@ -144,7 +142,7 @@ public class BezahlWerkzeugUI
         txtrWechselgeld.setFont(new Font("DINPro-Medium", Font.PLAIN, 13));
         txtrWechselgeld.setBackground(UIManager.getColor("FormattedTextField.disabledBackground"));
         txtrWechselgeld.setEditable(false);
-        txtrWechselgeld.setText("Wechselgeld: *");
+        txtrWechselgeld.setText("Wechselgeld: ");
         txtrWechselgeld.setBounds(181, 185, 136, 20);
         _hauptpanel.add(txtrWechselgeld);
 
@@ -189,17 +187,6 @@ public class BezahlWerkzeugUI
         separator_1.setOrientation(SwingConstants.VERTICAL);
         separator_1.setBounds(329, 106, 2, 99);
         _hauptpanel.add(separator_1);
-    }
-
-    private void initializeBemerkung()
-    {
-        JTextPane txtpnalleBetrgeIn = new JTextPane();
-        txtpnalleBetrgeIn.setFont(new Font("DINPro-Medium", Font.PLAIN, 12));
-        txtpnalleBetrgeIn.setBackground(UIManager.getColor("FormattedTextField.inactiveBackground"));
-        txtpnalleBetrgeIn.setEditable(false);
-        txtpnalleBetrgeIn.setText("* in Eurocent");
-        txtpnalleBetrgeIn.setBounds(20, 247, 86, 14);
-        _hauptpanel.add(txtpnalleBetrgeIn);
     }
 
     public JButton getOKButton()
@@ -265,10 +252,10 @@ public class BezahlWerkzeugUI
     public void setAusgewaehlteVorstellungField(String datum, String vorstellung)
     {
         _ausgewaehlteVorstellung.setText("Ausgewählte Vorstellung: " + datum
-                + "\n" + "\n" + vorstellung);
+                + "\n" + vorstellung);
     }
 
-    private String getEingabeGezahlterBetragField()
+    public String getEingabeGezahlterBetragField()
     {
         String s = "";
         try
@@ -281,30 +268,30 @@ public class BezahlWerkzeugUI
         return s;
     }
 
-    private int convertStringToInt(String eingabe)
-    {
-        int gezahlterBetrag = 0;
-        try
-        {
-            if (!eingabe.equals(""))
-            {
-                gezahlterBetrag = Integer.parseInt(eingabe);
-            }
-        }
-        catch (NumberFormatException e)
-        {
-            JDialog warningDialog = new JDialog();
-            JOptionPane.showMessageDialog(warningDialog,
-                    "Es dürfen nur positive Zahlen eingegeben werden!",
-                    "Falsche Eingabe", 0);
-        }
-        return gezahlterBetrag;
-    }
-
-    public int getGezahltenBetrag()
-    {
-        return convertStringToInt(getEingabeGezahlterBetragField());
-    }
+//    private int convertStringToInt(String eingabe)
+//    {
+//        int gezahlterBetrag = 0;
+//        try
+//        {
+//            if (!eingabe.equals(""))
+//            {
+//                gezahlterBetrag = Integer.parseInt(eingabe);
+//            }
+//        }
+//        catch (NumberFormatException e)
+//        {
+//            JDialog warningDialog = new JDialog();
+//            JOptionPane.showMessageDialog(warningDialog,
+//                    "Es dürfen nur positive Zahlen eingegeben werden!",
+//                    "Falsche Eingabe", 0);
+//        }
+//        return gezahlterBetrag;
+//    }
+//
+//    public int getGezahltenBetrag()
+//    {
+//        return convertStringToInt(getEingabeGezahlterBetragField());
+//    }
 
     public void macheBezahlansichtSichtbar()
     {

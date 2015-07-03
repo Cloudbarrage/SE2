@@ -21,21 +21,47 @@ public class Geldbetrag
         _euro = eurocent / 100;
         _cent = eurocent % 100;
     }
+    
+    public int euroAnteil()
+    {
+        return _euro;
+    }
+    
+    public int centAnteil()
+    {
+        return _cent;
+    }
 
     public static Geldbetrag valueOf(int euro, int cent)
     {
         return new Geldbetrag(euro, cent);
     }
 
-    public int euroAnteil()
+    public static Geldbetrag valueOf(String s)
     {
-        return _euro;
+        Matcher matcher = regex.matcher(s);
+        if(matcher.matches())
+        {
+            String euro = matcher.group(1);
+            String cent = matcher.group(2);
+            return new Geldbetrag(Integer.valueOf(euro), Integer.valueOf(cent));
+        }
+        return null;
     }
-
-    public int centAnteil()
+    
+    private static final Pattern regex = Pattern.compile("(-?\\d+),?(-?\\d*)€?");
+    
+    public static Geldbetrag valueOf(Integer i)
     {
-        return _cent;
+        int eurocent = i.intValue();
+        return new Geldbetrag(eurocent / 100, eurocent % 100);
     }
+    
+    public static Geldbetrag valueOf(int i)
+    {
+        return new Geldbetrag(i / 100, i % 100);
+    }
+    
 
     public Geldbetrag berechneSummeMit(Geldbetrag a)
     {
@@ -61,35 +87,32 @@ public class Geldbetrag
     @Override
     public String toString()
     {
-        if(_cent < 10)
+        if(_cent < 10 && _cent > -10)
         {
             return _euro + ",0" + _cent + "€";
         }
         return _euro + "," + _cent + "€";
     }
     
-    public static Geldbetrag stringToGeldbetrag(String s)
+    @Override
+    public boolean equals(Object o)
     {
-        Matcher matcher = regex.matcher(s);
-        if(matcher.matches())
+        if(o instanceof Geldbetrag)
         {
-            String euro = matcher.group(1);
-            String cent = matcher.group(2);
-            return new Geldbetrag(Integer.valueOf(euro), Integer.valueOf(cent));
+            Geldbetrag a = (Geldbetrag) o;
+            return (_euro == a.euroAnteil() && _cent == a.centAnteil());
         }
-        return null;
+        return false;
     }
     
-    private static final Pattern regex = Pattern.compile("(-?\\d+),(-?\\d+)€?");
-    
-    public static Geldbetrag integerToGeldbetrag(Integer i)
+    @Override
+    public int hashCode()
     {
-        int eurocent = i.intValue();
-        return new Geldbetrag(eurocent / 100, eurocent % 100);
+        return (_euro + _cent) * 42;
     }
     
-    public static Geldbetrag intToGeldbetrag(int i)
+    public boolean grösserGleich(Geldbetrag g)
     {
-        return new Geldbetrag(i / 100, i % 100);
+        return ((this.centAnteil() + this.euroAnteil()*100) > (g.centAnteil() + g.euroAnteil()*100));
     }
 }
