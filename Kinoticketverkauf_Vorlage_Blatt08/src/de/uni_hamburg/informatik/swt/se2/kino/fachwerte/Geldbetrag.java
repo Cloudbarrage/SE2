@@ -21,6 +21,7 @@ public class Geldbetrag
         _euro = eurocent / 100;
         _cent = eurocent % 100;
     }
+<<<<<<< HEAD
     
     public int euroAnteil()
     {
@@ -31,6 +32,8 @@ public class Geldbetrag
     {
         return _cent;
     }
+=======
+>>>>>>> parent of e2c6582... ...
 
     public static Geldbetrag valueOf(int euro, int cent)
     {
