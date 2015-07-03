@@ -21,7 +21,6 @@ public class Geldbetrag
         _euro = eurocent / 100;
         _cent = eurocent % 100;
     }
-<<<<<<< HEAD
     
     public int euroAnteil()
     {
@@ -32,8 +31,6 @@ public class Geldbetrag
     {
         return _cent;
     }
-=======
->>>>>>> parent of e2c6582... ...
 
     public static Geldbetrag valueOf(int euro, int cent)
     {
@@ -116,6 +113,6 @@ public class Geldbetrag
     
     public boolean grösserGleich(Geldbetrag g)
     {
-        return ((this.centAnteil() + this.euroAnteil()*100) > (g.centAnteil() + g.euroAnteil()*100));
+        return ((this.centAnteil() + this.euroAnteil()*100) >= (g.centAnteil() + g.euroAnteil()*100));
     }
 }
