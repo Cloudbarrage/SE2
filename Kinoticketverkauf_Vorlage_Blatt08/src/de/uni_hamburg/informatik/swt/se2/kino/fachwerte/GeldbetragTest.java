@@ -81,12 +81,14 @@ public class GeldbetragTest
     @Test
     public void testeStringToGeldbetrag()
     {
-        assertEquals(-12, Geldbetrag.valueOf("-10,-222€").euroAnteil());
-        assertEquals(-22, Geldbetrag.valueOf("-10,-222€").centAnteil());
+        assertEquals(-12, Geldbetrag.valueOf("-10,222€").euroAnteil());
+        assertEquals(-22, Geldbetrag.valueOf("-10,222€").centAnteil());
         assertEquals(-11, Geldbetrag.valueOf("-11").euroAnteil());
         assertEquals(0, Geldbetrag.valueOf("-11").centAnteil());
-        assertEquals(-10, Geldbetrag.valueOf("-11,45").euroAnteil());
-        assertEquals(-55, Geldbetrag.valueOf("-11,45").centAnteil());
+        assertEquals(-11, Geldbetrag.valueOf("-11,45").euroAnteil());
+        assertEquals(-45, Geldbetrag.valueOf("-11,45").centAnteil());
+        assertEquals(0, Geldbetrag.valueOf("-0,05").euroAnteil());
+        assertEquals(-5, Geldbetrag.valueOf("-0,05").centAnteil());
     }
     
     @Test
@@ -108,10 +110,14 @@ public class GeldbetragTest
     {
         Geldbetrag test = Geldbetrag.valueOf(15, 5);
         Geldbetrag test2 = Geldbetrag.valueOf(0, -1);
+        Geldbetrag test3 = Geldbetrag.valueOf(0, 55);
+        Geldbetrag test4 = Geldbetrag.valueOf(0, 1);
         assertEquals("7,78€", d.toString());
         assertEquals("15,00€", a.toString());
         assertEquals("15,05€", test.toString());
         assertEquals("-0,01€", test2.toString());
+        assertEquals("0,55€", test3.toString());
+        assertEquals("0,01€", test4.toString());
     }
     
     @Test
@@ -119,6 +125,6 @@ public class GeldbetragTest
     {
         Geldbetrag test = Geldbetrag.valueOf(15, 0);
         assertTrue(Geldbetrag.valueOf(15, 0).equals(test));
-        assertFalse(Geldbetrag.valueOf(-15, 0).equals(test));
+        assertTrue(Geldbetrag.valueOf(-15, 0).equals(test.multipliziereMit(-1)));
     }
 }

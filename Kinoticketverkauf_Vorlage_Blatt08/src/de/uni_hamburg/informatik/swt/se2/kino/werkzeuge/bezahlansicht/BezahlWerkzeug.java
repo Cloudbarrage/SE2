@@ -70,7 +70,7 @@ public class BezahlWerkzeug extends ObservableSubwerkzeug
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    _gezahlterBetrag = Geldbetrag.valueOf(_ui.getEingabeGezahlterBetragField());
+                    _gezahlterBetrag = _ui.getGezahltenBetrag();
                     if (gezahlterBetragAusreichend())
                     {
                         _ui.getOKButton()

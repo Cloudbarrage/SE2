@@ -1,6 +1,7 @@
 package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.bezahlansicht;
 
 import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -11,8 +12,13 @@ import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+
 import java.awt.Font;
+
 import javax.swing.ScrollPaneConstants;
+
+import de.uni_hamburg.informatik.swt.se2.kino.fachwerte.Geldbetrag;
+
 import java.awt.Color;
 
 public class BezahlWerkzeugUI
@@ -255,7 +261,7 @@ public class BezahlWerkzeugUI
                 + "\n" + vorstellung);
     }
 
-    public String getEingabeGezahlterBetragField()
+    private String getEingabeGezahlterBetragField()
     {
         String s = "";
         try
@@ -268,31 +274,55 @@ public class BezahlWerkzeugUI
         return s;
     }
 
-//    private int convertStringToInt(String eingabe)
-//    {
-//        int gezahlterBetrag = 0;
-//        try
-//        {
-//            if (!eingabe.equals(""))
-//            {
-//                gezahlterBetrag = Integer.parseInt(eingabe);
-//            }
-//        }
-//        catch (NumberFormatException e)
-//        {
-//            JDialog warningDialog = new JDialog();
-//            JOptionPane.showMessageDialog(warningDialog,
-//                    "Es dürfen nur positive Zahlen eingegeben werden!",
-//                    "Falsche Eingabe", 0);
-//        }
-//        return gezahlterBetrag;
-//    }
-//
-//    public int getGezahltenBetrag()
-//    {
-//        return convertStringToInt(getEingabeGezahlterBetragField());
-//    }
+    private Geldbetrag convertStringToGeldbetrag(String eingabe)
+    {
+        Geldbetrag gezahlterBetrag = Geldbetrag.valueOf(0, 0);
+        try
+        {
+            gezahlterBetrag = Geldbetrag.valueOf(eingabe);
+        }
+        catch (NumberFormatException | IllegalStateException ex)
+        {
+            JDialog warningDialog = new JDialog();
+            JOptionPane.showMessageDialog(warningDialog,
+                    "Es dürfen nur Beträge nach folgendem Schema eingegeben werden:" + "\n" + "EE,CC",
+                    "Falsche Eingabe", 0);
+        }
+        return gezahlterBetrag;
+    }
 
+    public Geldbetrag getGezahltenBetrag()
+    {
+        return convertStringToGeldbetrag(getEingabeGezahlterBetragField());
+    }
+
+  
+    
+//  private int convertStringToInt(String eingabe)
+//  {
+//      int gezahlterBetrag = 0;
+//      try
+//      {
+//          if (!eingabe.equals(""))
+//          {
+//              gezahlterBetrag = Integer.parseInt(eingabe);
+//          }
+//      }
+//      catch (NumberFormatException e)
+//      {
+//          JDialog warningDialog = new JDialog();
+//          JOptionPane.showMessageDialog(warningDialog,
+//                  "Es dürfen nur positive Zahlen eingegeben werden!",
+//                  "Falsche Eingabe", 0);
+//      }
+//      return gezahlterBetrag;
+//  }
+    
+//  public int getGezahltenBetrag()
+//  {
+//      return convertStringToInt(getEingabeGezahlterBetragField());
+//  }
+    
     public void macheBezahlansichtSichtbar()
     {
         _diaBezahlansicht.setVisible(true);
